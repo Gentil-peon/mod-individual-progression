@@ -26,7 +26,11 @@ CMakeLists.txt.user
 #
 /.settings/
 /.externalToolBuilders/*
-# exclude in all levels
+.vscode
+
+#
+# Exclude in all levels
+#
 nbproject/
 .sync.ffs_db
 *.kate-swp
