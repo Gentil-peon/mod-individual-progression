@@ -267,6 +267,12 @@ public:
                     sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
                 }
                 break;
+            case BANG_A_GONG:
+                if (!sIndividualProgression->disableDefaultProgression)
+                {
+                    sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
+                }
+                break;            
             case QUEST_MORROWGRAIN:
             case QUEST_TROLL_NECKLACE:
             case QUEST_DEADWOOD:
