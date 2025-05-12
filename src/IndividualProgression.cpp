@@ -245,7 +245,7 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
                 UpdateProgressionState(killer, PROGRESSION_ONYXIA);
                 break;
             case NEFARIAN:
-                if (RequireAQWarEffort)
+                if (RequireAQWarEffort || (killer->GetPlayerSetting("mod-individual-progression", SETTING_PROGRESSION_STATE).value == PROGRESSION_BLACKWING_LAIR))
                 {
                     UpdateProgressionState(killer, PROGRESSION_BLACKWING_LAIR);
                 }
