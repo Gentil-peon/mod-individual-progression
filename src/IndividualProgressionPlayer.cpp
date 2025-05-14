@@ -399,6 +399,41 @@ public:
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
+            case AREA_BOUGH_SHADOW:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_SERADANE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_DREAM_BOUGH:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_JADEMIR_LAKE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_TWILIGHT_GROVE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
             case AREA_LIGHTS_HOPE:
             case AREA_ARGENT_TOURNAMENT_GROUNDS:
             case AREA_ARGENT_SUNREAVER_PAVILION:
@@ -437,15 +472,15 @@ public:
             return;
         }
 
-        if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) || (isExcludedFromProgression(player) && (player->GetLevel() <= IP_LEVEL_VANILLA)))
+        if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) || (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) && (player->GetLevel() <= IP_LEVEL_VANILLA)))
         {
             rDungeonId = RDF_CLASSIC;
         }
-        else if (rDungeonId == RDF_WRATH_OF_THE_LICH_KING && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) || (isExcludedFromProgression(player) && (player->GetLevel() <= IP_LEVEL_TBC)))
+        else if ((rDungeonId == RDF_WRATH_OF_THE_LICH_KING && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5)) || (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && (player->GetLevel() <= IP_LEVEL_TBC)))
         {
             rDungeonId = RDF_THE_BURNING_CRUSADE;
         }
-        else if (rDungeonId == RDF_WRATH_OF_THE_LICH_KING_HEROIC && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) || (isExcludedFromProgression(player) && (player->GetLevel() <= IP_LEVEL_TBC)))
+        else if ((rDungeonId == RDF_WRATH_OF_THE_LICH_KING_HEROIC && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5)) || (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && (player->GetLevel() <= IP_LEVEL_TBC)))
         {
             rDungeonId = RDF_THE_BURNING_CRUSADE_HEROIC;
         }
@@ -731,17 +766,6 @@ private:
 
 public:
     IndividualPlayerProgression_UnitScript() : UnitScript("IndividualPlayerProgression_UnitScript") { }
-
-    bool isExcludedFromProgression(Player* player)
-    {
-        if(!sIndividualProgression->excludeAccounts) {
-            return false;
-        }
-        std::string accountName;
-        bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
-        std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
-        return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
-    }
 
     void ModifyHealReceived(Unit* /*target*/, Unit *healer, uint32 &heal, SpellInfo const *spellInfo) override
     {
