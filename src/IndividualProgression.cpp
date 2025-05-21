@@ -238,7 +238,7 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
                 {
                     break;
                 }
-                else if (RequirePreAQQuests)
+                else if (requirePreAQQuests)
                 {
                     UpdateProgressionState(killer, PROGRESSION_BLACKWING_LAIR);
                 }
