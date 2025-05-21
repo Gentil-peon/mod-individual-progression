@@ -87,19 +87,8 @@ public:
                 return false; 
             }
 
-            /*
-            The Scarab Gong can still be seen after the AQ raid is released, 
-            because during the original event some players could still activate it during the first 24 hours.
-            */        
-            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
-            {
-                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_PRE_AQ);
-            }
-            else
-            {
-                return sIndividualProgression->hasPassedProgression(target, PROGRESSION_BLACKWING_LAIR);
-            }
-
+            /* The Scarab Gong can still be seen during the outdoor AQ war.  */        
+            return sIndividualProgression->isBeforeProgression(target, PROGRESSION_NAXX40);
         }
 
         void NextStage(uint32 timeUntil = 100)
@@ -231,8 +220,8 @@ public:
             {
                 return false; 
             }
-            // (RequirePreAQQuests = 1) - AQ gate closed after Nefarian kill. War effort starts. AQ War effort + AQ Quest line needs to be done to open the gate. 
-            // (RequirePreAQQuests = 0) - AQ gate closed after Nefarian kill. War effort starts. AQ War effort needs to be done to open the gate. 
+            // (RequirePreAQQuests = 1) - AQ gate closed after Nefarian kill. AQ Quest line needs to be done to open the gate. AQ War effort available but not needed.
+            // (RequirePreAQQuests = 0) - AQ gate opened after Nefarian kill. AQ War effort available but not needed.
             return sIndividualProgression->isBeforeProgression(target, PROGRESSION_PRE_AQ);            
         }
     };

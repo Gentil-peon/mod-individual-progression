@@ -191,11 +191,11 @@ public:
         {
             return false;
         }
-        if (mapid == MAP_AHN_QIRAJ_TEMPLE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
+        if (mapid == MAP_AHN_QIRAJ_TEMPLE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_BLACKWING_LAIR))
         {
             return false;
         }
-        if (mapid == MAP_RUINS_OF_AHN_QIRAJ && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
+        if (mapid == MAP_RUINS_OF_AHN_QIRAJ && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_BLACKWING_LAIR))
         {
             return false;
         }
@@ -272,7 +272,13 @@ public:
                 {
                     sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
                 }
-                break;            
+                break;
+            case CHAOS_AND_DESTRUCTION:
+                if (!sIndividualProgression->disableDefaultProgression)
+                {
+                    sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
+                }
+                break;
             case QUEST_MORROWGRAIN:
             case QUEST_TROLL_NECKLACE:
             case QUEST_DEADWOOD:
@@ -347,6 +353,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -354,6 +361,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
@@ -361,6 +369,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -368,6 +377,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;            
@@ -375,6 +385,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
@@ -382,6 +393,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
@@ -389,6 +401,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
@@ -396,6 +409,7 @@ public:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;	
@@ -403,6 +417,7 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -410,6 +425,7 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -417,6 +433,7 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -424,6 +441,7 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -431,6 +449,7 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -447,11 +466,13 @@ public:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2))
                 {
                     player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
             default:
                 player->RemoveAura(IPP_PHASE);
+                player->RemoveAura(IPP_PHASE_AQ);
         }
     }
 

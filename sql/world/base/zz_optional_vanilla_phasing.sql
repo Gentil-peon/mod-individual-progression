@@ -10,6 +10,7 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 17094, -- Nemeth Hawkeye, Grom'gol Base Camp
 17095, -- Balandar Brightstar, Brackenwall Village
 17097, -- Advisor Sarophas, Kargath
+17099, -- Mehlar Dawnblade, The Bulwark
 17103, -- Emissary Taluun, Stormwind
 17106, -- Vindicator Palanaar, Astranaar
 17109, -- Cersei Dusksinger, Stonard
@@ -24,6 +25,8 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 37888, -- Frax Bucketdrop, Thondroril River, Flight Master
 37915 -- Timothy Cunningham, The Bulwark, Flight Master
 );
+-- fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle 
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
 -- the flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there
 /* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (

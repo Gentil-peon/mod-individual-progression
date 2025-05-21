@@ -47,7 +47,7 @@ public:
             
             if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ))
             {
-                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_PRE_AQ);
+                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_AQ);
             }
             else
             {
@@ -80,13 +80,13 @@ public:
             
             Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
             
-            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
+            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ))
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_AQ);
             }
             else
             {
-                return sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ);
+                return sIndividualProgression->hasPassedProgression(target, PROGRESSION_BLACKWING_LAIR);
             }
         }
     };
@@ -221,7 +221,7 @@ public:
 			
             if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ))
             {
-                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_PRE_AQ);
+                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_AQ);
             }
             else
             {
@@ -254,13 +254,13 @@ public:
 			
             Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
 			
-            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
+            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ))
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_AQ);
             }
             else
             {
-                return sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_AQ);
+                return sIndividualProgression->hasPassedProgression(target, PROGRESSION_BLACKWING_LAIR);
             }			
         }
     };

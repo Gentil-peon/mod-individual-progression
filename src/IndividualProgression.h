@@ -47,17 +47,19 @@ enum BuffSpells
     RANGED_HASTE_SPELL   = 89507,
     SPELL_RUNE_TAP       = 48982,
     SPELL_LIFE_STEAL     = 20004,
-    IPP_PHASE            = 89509
+    IPP_PHASE            = 89509,
+    IPP_PHASE_AQ         = 89511
 };
 
 enum ProgressionQuestIDs
 {
-    MIGHT_OF_KALIMDOR    = 8742,
-    BANG_A_GONG          = 108743,
-    QUEST_MORROWGRAIN    = 3803,
-    QUEST_TROLL_NECKLACE = 2881,
-    QUEST_DEADWOOD       = 6221,
-    QUEST_WINTERFALL     = 6241
+    MIGHT_OF_KALIMDOR     = 8742,
+    BANG_A_GONG           = 108743,
+    CHAOS_AND_DESTRUCTION = 108744,
+    QUEST_MORROWGRAIN     = 3803,
+    QUEST_TROLL_NECKLACE  = 2881,
+    QUEST_DEADWOOD        = 6221,
+    QUEST_WINTERFALL      = 6241
 };
 
 enum ProgressionZones
@@ -170,7 +172,7 @@ public:
     std::map<uint32, uint8> customProgressionMap;
     questXpMapType questXpMap;
     float vanillaPowerAdjustment, vanillaHealthAdjustment, tbcPowerAdjustment, tbcHealthAdjustment, vanillaHealingAdjustment, tbcHealingAdjustment, previousGearTuning;
-    bool enabled, questXpFix, hunterPetLevelFix, requirePreAQQuests, RequireAQWarEffort, enforceGroupRules, fishingFix, simpleConfigOverride, questMoneyAtLevelCap, repeatableVanillaQuestsXp, disableDefaultProgression, earlyDungeonSet2, requireNaxxStrath, pvpGearRequirements, excludeAccounts;
+    bool enabled, questXpFix, hunterPetLevelFix, requirePreAQQuests, enforceGroupRules, fishingFix, simpleConfigOverride, questMoneyAtLevelCap, repeatableVanillaQuestsXp, disableDefaultProgression, earlyDungeonSet2, requireNaxxStrath, pvpGearRequirements, excludeAccounts;
     int progressionLimit, startingProgression, tbcRacesProgressionLevel, deathKnightProgressionLevel, deathKnightStartingProgression;
     std::string excludedAccountsRegex;
 
