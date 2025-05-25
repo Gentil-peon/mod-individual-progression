@@ -29,10 +29,11 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
 -- the flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
+/* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
 10583, -- Gryfe, Marshal's Refuge, Flight Master
 16227 -- Bragok, Ratchet, Flight Master
-);
+); */
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (10583, 16227);
 
 -- remove interactions between Cersei, Lorrin and the orcs in Stonard 
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
@@ -47,7 +48,7 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (347,
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 49832; -- Darnassus
 
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
-150747, 150748, 150749, 150750, 150751, 150752, 150753, -- Orgrimmar
+150747, 150748, 150749, 150750, 150751, 150752, 150753, 150755, -- Orgrimmar
 100500, 100501, 100502, 100503, 268683, -- Undercity
 932, 933, 100156, 100157, 100158, 100159, 100505, 100506, 150736, 150737, 150738, 150740, 150742, 150743, 150744, 150746, 151239,  -- Stormwind
 121574 -- Darnassus
@@ -68,3 +69,4 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
 49095,
 50356, 50357
 ); */
+UPDATE `gameobject` SET `ScriptName` = '' WHERE `guid` IN (12496, 44716);
