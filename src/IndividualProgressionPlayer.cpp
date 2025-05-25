@@ -348,53 +348,126 @@ public:
 
     void OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 newArea) override
     {
-        static const std::unordered_set<uint32> onyxiaAreas = {
-            AREA_BOUGH_SHADOW, AREA_SERADANE, AREA_DREAM_BOUGH,
-            AREA_JADEMIR_LAKE, AREA_TWILIGHT_GROVE
-        };
-        
-        static const std::unordered_set<uint32> preAQAreas = {
-            AREA_DARKSHORE, AREA_GROVE_OF_THE_ANCIENTS, AREA_WILDBEND_RIVER,
-            AREA_TWILIGHT_VALE, AREA_SILITHUS, AREA_HIVE_ASHI, AREA_HIVE_ZORA,
-            AREA_HIVE_REGAL
-        };
-
-        static const std::unordered_set<uint32> aqToNaxxAreas = {
-            AREA_DUROTAR, AREA_ROCKTUSK_FARM, AREA_TIRISFAL_GLADES,
-            AREA_RUINS_OF_LORDAERON, AREA_MULGORE, AREA_VALLEY_OF_HEROES,
-            AREA_ELWYNN_FOREST, AREA_DUN_MOROGH, AREA_TELDRASSIL,
-            AREA_EASTERN_PLAGUELANDS, AREA_PESTILENT_SCAR, AREA_THE_MARRIS_STEAD,
-            AREA_BLASTED_LANDS, AREA_RISE_OF_THE_DEFILER, AREA_DREADMAUL_HOLD,
-            AREA_DREADMAUL_POST, AREA_THE_DARK_PORTAL, AREA_SERPENTS_COIL,
-            AREA_TANARIS, AREA_GADGETZAN, AREA_ABYSSAL_SANDS, AREA_BROKEN_PILLAR,
-            AREA_WINTERSPRING, AREA_TIMBERMAW_POST, AREA_FROSTSABER_ROCK,
-            AREA_ICE_THISTLE_HILLS, AREA_MAZTHORIL, AREA_AZSHARA,
-            AREA_HALDARR_ENCAMPMENT, AREA_THE_SHATTERED_STRAND,
-            AREA_SOUTHRIDGE_BEACH, AREA_BURNING_STEPPES, AREA_DRACO_DAR,
-            AREA_BLACKROCK_MOUNTAIN, AREA_DREADMAUL_ROCK, AREA_RUINS_OF_THAURISSAN
-        };
-
-        auto applyPhase = [&]() {
-            player->RemoveAura(IPP_PHASE);
-            player->RemoveAura(IPP_PHASE_AQ);
-            player->CastSpell(player, IPP_PHASE, false);
-        };
-
-        if (aqToNaxxAreas.contains(newArea)) {
-            if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) &&
-                sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) {
-                applyPhase();
-            }
-        }
-        else if (preAQAreas.contains(newArea)) {
-            if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) &&
-                sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)) {
-                applyPhase();
-            }
-        } else if (onyxiaAreas.contains(newArea)) {
-            if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA)) {
-                applyPhase();
-            }
+        switch (newArea) {
+            case AREA_DARKSHORE:
+            case AREA_GROVE_OF_THE_ANCIENTS:    
+            case AREA_WILDBEND_RIVER:
+            case AREA_TWILIGHT_VALE:
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;            
+            case AREA_SILITHUS:    
+            case AREA_HIVE_ASHI:
+            case AREA_HIVE_ZORA:
+            case AREA_HIVE_REGAL:
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                else if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)) 
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE_AQ, false);
+                }
+                break;    
+            case AREA_BOUGH_SHADOW:
+            case AREA_SERADANE:
+            case AREA_DREAM_BOUGH:
+            case AREA_JADEMIR_LAKE:
+            case AREA_TWILIGHT_GROVE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_DUROTAR:
+            case AREA_ROCKTUSK_FARM:
+            case AREA_TIRISFAL_GLADES:
+            case AREA_RUINS_OF_LORDAERON:
+            case AREA_MULGORE:
+            case AREA_VALLEY_OF_HEROES:
+            case AREA_ELWYNN_FOREST:
+            case AREA_DUN_MOROGH:
+            case AREA_TELDRASSIL:
+            case AREA_EASTERN_PLAGUELANDS:
+            case AREA_PESTILENT_SCAR:
+            case AREA_THE_MARRIS_STEAD:
+            case AREA_BLASTED_LANDS:
+            case AREA_RISE_OF_THE_DEFILER:
+            case AREA_DREADMAUL_HOLD:
+            case AREA_DREADMAUL_POST:
+            case AREA_THE_DARK_PORTAL:
+            case AREA_SERPENTS_COIL:
+            case AREA_TANARIS:
+            case AREA_GADGETZAN:
+            case AREA_ABYSSAL_SANDS:
+            case AREA_BROKEN_PILLAR:
+            case AREA_WINTERSPRING:
+            case AREA_TIMBERMAW_POST:
+            case AREA_FROSTSABER_ROCK:
+            case AREA_ICE_THISTLE_HILLS:
+            case AREA_MAZTHORIL:
+            case AREA_AZSHARA:
+            case AREA_HALDARR_ENCAMPMENT:
+            case AREA_THE_SHATTERED_STRAND:
+            case AREA_SOUTHRIDGE_BEACH:
+            case AREA_BURNING_STEPPES:
+            case AREA_DRACO_DAR:
+            case AREA_BLACKROCK_MOUNTAIN:
+            case AREA_DREADMAUL_ROCK:
+            case AREA_RUINS_OF_THAURISSAN:
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)) && (sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_LIGHTS_HOPE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_ARGENT_TOURNAMENT_GROUNDS:
+            case AREA_ARGENT_SUNREAVER_PAVILION:
+            case AREA_ARGENT_SILVER_COVENANT_PAVILION:
+            case AREA_THE_RING_OF_CHAMPIONS:
+            case AREA_THE_ASPIRANTS_RING:
+            case AREA_THE_ARGENT_VALIANTS_RING:
+            case AREA_THE_ALLIANCE_VALIANTS_RING:
+            case AREA_THE_HORDE_VALIANTS_RING:
+            case AREA_ARGENT_PAVILION:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            default:
+                uint32 mapid = player->GetMapId();
+                if((mapid == MAP_SHADOWFANG_KEEP || mapid == MAP_RAZORFEN_DOWNS || mapid == MAP_SCARLET_MONASTERY || mapid == MAP_STRATHOLME || mapid == MAP_DIRE_MAUL) &&
+                    (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                } else {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                }
         }
     }
 
@@ -636,11 +709,12 @@ private:
         {
             return;
         }
+
         if (!pet || !pet->GetOwner())
         {
             return;
         }
-		
+
         if (pet->GetLevel() <= IP_LEVEL_VANILLA)
         {
             AdjustVanillaStats(pet);
@@ -840,7 +914,6 @@ public:
             damage *= 1.0f - gearAdjustment;
         }
     }
-		
 };
 
 void AddSC_mod_individual_progression_player()
