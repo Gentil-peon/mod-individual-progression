@@ -29,10 +29,10 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
 -- the flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there
-/* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
 10583, -- Gryfe, Marshal's Refuge, Flight Master
 16227 -- Bragok, Ratchet, Flight Master
-); */
+);
 
 -- remove interactions between Cersei, Lorrin and the orcs in Stonard 
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
