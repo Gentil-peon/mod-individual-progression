@@ -54,8 +54,8 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
 121574 -- Darnassus
 );
 
--- Legionnaire Teena in Orgrimmar
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 12788 AND `map` = 1;
+-- Legionnaire Teena, Councilor Arial D'Anastasis (Orgrimmar)
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (12788, 19850) AND `map` = 1;
 
 -- hide guild vaults until TBC (was introduced during 2.3) - disabled by default, because most players will expect these gobject to be there
 /* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` IN (
