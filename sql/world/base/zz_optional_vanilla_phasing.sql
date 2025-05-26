@@ -25,6 +25,12 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 37888, -- Frax Bucketdrop, Thondroril River, Flight Master
 37915 -- Timothy Cunningham, The Bulwark, Flight Master
 );
+
+-- Legionnaire Teena, Councilor Arial D'Anastasis (Orgrimmar)
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (12788, 19850) AND `map` = 1;
+-- Harbinger Ennarth (Stormwind)
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 19848 AND `map` = 0;
+
 -- fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle 
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
@@ -53,11 +59,6 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
 932, 933, 100156, 100157, 100158, 100159, 100505, 100506, 150736, 150737, 150738, 150740, 150742, 150743, 150744, 150746, 151239,  -- Stormwind
 121574 -- Darnassus
 );
-
--- Legionnaire Teena, Councilor Arial D'Anastasis (Orgrimmar)
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (12788, 19850) AND `map` = 1;
--- Harbinger Ennarth (Stormwind)
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 19848 AND `map` = 0;
 
 -- hide guild vaults until TBC (was introduced during 2.3) - disabled by default, because most players will expect these gobject to be there
 /* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` IN (
