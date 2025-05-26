@@ -664,7 +664,7 @@ public:
 
             if (resetTimer <= diff)
             {
-                EnterEvadeMode(EVADE_REASON_NO_HOSTILES); // EnterEvadeMode(EVADE_REASON_NO_HOSTILES)
+                EnterEvadeMode(EVADE_REASON_NO_HOSTILES);
                 resetTimer = 5000;
             }
             else
