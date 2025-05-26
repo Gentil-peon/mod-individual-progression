@@ -198,7 +198,7 @@ DELETE FROM `creature` WHERE `id1`=3890;
 INSERT INTO `creature` (`id1`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES (3890, 1, 1990.64, -4794.13, 56.0472, 3.22013, 300);
 
 -- Legionnaire Teena
-DELETE FROM `creature` WHERE `id1`= 12788;
+DELETE FROM `creature` WHERE `id1`=12788;
 INSERT INTO `creature` (`id1`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES (12788, 1, 1650.95, -4212.82, 55.439, 0.182965, 25);
 
 -- Lady Palanseer <Armor Quartermaster>
