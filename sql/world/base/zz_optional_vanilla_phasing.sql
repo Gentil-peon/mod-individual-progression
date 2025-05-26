@@ -22,14 +22,19 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 22931, -- Gorrim, Emerald Sanctuary, Flight Master
 24366, -- Nizzle, Rebel Camp, Flight Master
 27705, -- Lorrin Foxfire, Stonard
+29093, -- Ian Drake, Stormwind
+29095, -- Edward Cairn, Undercity
 37888, -- Frax Bucketdrop, Thondroril River, Flight Master
 37915 -- Timothy Cunningham, The Bulwark, Flight Master
 );
 
--- Legionnaire Teena, Councilor Arial D'Anastasis (Orgrimmar)
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (12788, 19850) AND `map` = 1;
--- Harbinger Ennarth (Stormwind)
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 19848 AND `map` = 0;
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (
+12788, -- Legionnaire Teena
+19850 -- Councilor Arial D'Anastasis
+) AND `map` = 1; -- Orgrimmar only
+
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 19848 -- Harbinger Ennarth
+AND `map` = 0; -- Stormwind only
 
 -- fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle 
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
@@ -41,10 +46,11 @@ UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 ); */
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (10583, 16227);
 
+-- Outland map outside Dark Portal
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 42457;
+
 -- remove interactions between Cersei, Lorrin and the orcs in Stonard 
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
-
--- to do: mail boxes in cities and anvil + furnace at Orgrimmar entrance
 
 -- hide Rogg and his anvil + forge at the entrance of Orgrimmar until WotLK
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` = 37072;
