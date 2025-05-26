@@ -632,14 +632,14 @@ public:
         /*explicit*/ npc_training_dummy_ipp_wotlkAI(Creature* creature) : ScriptedAI(creature)
         {
             me->SetCombatMovement(false);
-            me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
+            me->ApplySpellImmune(0, 0, 98, true); // ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true)
         }
 
         uint32 resetTimer;
 
         void Reset() override
         {
-            me->CastSpell(me, SPELL_STUN_PERMANENT, true);
+            me->CastSpell(me, 61204, true); // CastSpell(me, SPELL_STUN_PERMANENT, true)
             resetTimer = 5000;
         }
 
@@ -664,7 +664,7 @@ public:
 
             if (resetTimer <= diff)
             {
-                EnterEvadeMode(EVADE_REASON_NO_HOSTILES);
+                EnterEvadeMode(EVADE_REASON_NO_HOSTILES); // EnterEvadeMode(EVADE_REASON_NO_HOSTILES)
                 resetTimer = 5000;
             }
             else
