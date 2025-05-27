@@ -119,9 +119,9 @@ public:
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_NAXX40);
             }
-            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && player->GetLevel() == 70)
+            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && target->GetLevel() == 70)
             {
-                return sIndividualProgression->isBeforeProgression(player, PROGRESSION_WOTLK_TIER_1);
+                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_WOTLK_TIER_1);
             }
             else
             {
@@ -323,9 +323,9 @@ public:
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_NAXX40);
             } 
-            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && player->GetLevel() == 70)
+            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && target->GetLevel() == 70)
             {
-                return sIndividualProgression->isBeforeProgression(player, PROGRESSION_WOTLK_TIER_1);
+                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_WOTLK_TIER_1);
             }
             else
             {
