@@ -115,13 +115,13 @@ public:
             
             Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
             
-            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
+            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5))
+            {
+                return target->GetLevel() == 70;
+            } 
+            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_NAXX40);
-            }
-            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && target->GetLevel() == 70)
-            {
-                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_WOTLK_TIER_1);
             }
             else
             {
@@ -319,14 +319,14 @@ public:
 			
             Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
 			
-            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
+            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5))
+            {
+                return target->GetLevel() == 70;
+            } 
+            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
             {
                 return sIndividualProgression->isBeforeProgression(target, PROGRESSION_NAXX40);
-            } 
-            else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5) && target->GetLevel() == 70)
-            {
-                return sIndividualProgression->isBeforeProgression(target, PROGRESSION_WOTLK_TIER_1);
-            }
+            }  
             else
             {
                 return false;
