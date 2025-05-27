@@ -1,7 +1,17 @@
 /*-- SCOURCE INVASION - WotLK additions --*/
 
-DELETE FROM `gameobject` WHERE `id` IN (190610); -- Orders from the Lich King
+/* Creature Tenris Mirkblood in Karazhan (Phasing) */
+UPDATE `creature` SET `phaseMask` = 65536 WHERE `id1` = 28194; -- Prince Tenris Mirkblood, @IPPPHASE 65536
+
+/* Gobject for Tenris Mirkblood room in Karazhan */
+DELETE FROM `gameobject` WHERE `id` = 190610; -- Orders from the Lich King
 INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `VerifiedBuild`, `ScriptName`) 
 VALUES (660610, 190610, 532, 0, 0, 1, 1, -11083.367, -1972.86, 77.576, 3.11328, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si');
+/* To-do: Add blood tankers */
+/* To-do: Add blood tankers */
+/* To-do: Add blood tankers */
 
-UPDATE `creature` SET `phaseMask` = 65536 WHERE `id1` = 28194; -- Prince Tenris Mirkblood, @IPPPHASE 65536
+/* Make trinket works: Monster Slayer's Kit (40354) */
+/* spell_item_monster_slayer_s_kit is not implemented in AzerothCore at the moment, we are replacing it */
+DELETE FROM `spell_script_names` WHERE `id` = 54092;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (54092, 'spell_item_six_demon_bag');
