@@ -214,7 +214,7 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
             case 16423: // NPC: Spectral Apparition (Scourge Invasion event)
             case 16437: // NPC: Spectral Spirit (Scourge Invasion event)
             case 16438: // NPC: Skeletal Trooper (Scourge Invasion event)
-                killer->Additem(22892, 1); // Item: Dim Necrotic Stone (Scourge Invasion event)
+                killer->AddItem(22892, 1); // Item: Dim Necrotic Stone (Scourge Invasion event)
                 killer->CompleteQuest(9260); // Quest: Investigate the Scourge of Stormwind (Scourge Invasion event)
                 killer->CompleteQuest(9265); // Quest: Investigate the Scourge of the Undercity (Scourge Invasion event)
                 killer->CompleteQuest(9261); // Quest: Investigate the Scourge of Ironforge (Scourge Invasion event)
