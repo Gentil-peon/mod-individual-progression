@@ -211,23 +211,22 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
 {
         switch (killed->GetEntry())
         {
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-                killer->CompleteQuest(9260); // Investigate the Scourge of Stormwind (Scourge Invasion event)
-                killer->CompleteQuest(9265); // Investigate the Scourge of the Undercity (Scourge Invasion event)
+            case 16423: // NPC: Spectral Apparition (Scourge Invasion event)
+            case 16437: // NPC: Spectral Spirit (Scourge Invasion event)
+            case 16438: // NPC: Skeletal Trooper (Scourge Invasion event)
+                killer->Additem(22892, 1); // Item: Dim Necrotic Stone (Scourge Invasion event)
+                killer->CompleteQuest(9260); // Quest: Investigate the Scourge of Stormwind (Scourge Invasion event)
+                killer->CompleteQuest(9265); // Quest: Investigate the Scourge of the Undercity (Scourge Invasion event)
+                killer->CompleteQuest(9261); // Quest: Investigate the Scourge of Ironforge (Scourge Invasion event)
+                killer->CompleteQuest(9263); // Quest: Investigate the Scourge of Orgrimmar (Scourge Invasion event)
+                killer->CompleteQuest(9262); // Quest: Investigate the Scourge of Darnassus (Scourge Invasion event)
+                killer->CompleteQuest(9264); // Quest: Investigate the Scourge of Thunder Bluff (Scourge Invasion event)
+                killer->CompleteQuest(12817); // Quest: Investigate the Scourge of Exodar (Scourge Invasion event)
+                killer->CompleteQuest(12816); // Quest: Investigate the Scourge of Silvermoon (Scourge Invasion event)
                 break;
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-                killer->CompleteQuest(9261); // Investigate the Scourge of Ironforge (Scourge Invasion event)
-                killer->CompleteQuest(9263); // Investigate the Scourge of Orgrimmar (Scourge Invasion event)
+            case 28194: // NPC: Prince Tenris Mirkblood (Scourge Invasion WotLK event)
+                killer->CompleteQuest(12616); // Quest: Chamber of Secrets (Scourge Invasion WotLK event)
                 break;
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-                killer->CompleteQuest(9262); // Investigate the Scourge of Darnassus (Scourge Invasion event)
-                killer->CompleteQuest(9264); // Investigate the Scourge of Thunder Bluff (Scourge Invasion event)
-                break;
-            case 28194: // Prince Tenris Mirkblood (Scourge Invasion WotLK event)
-                killer->CompleteQuest(12616); // Chamber of Secrets (Scourge Invasion WotLK event)
-                break;
-                // To-Do: killer->CompleteQuest(12817); // Investigate the Scourge of Exodar (Scourge Invasion event)
-                // To-Do: killer->CompleteQuest(12816); // Investigate the Scourge of Silvermoon (Scourge Invasion event)
         }
 
         if (!enabled)
