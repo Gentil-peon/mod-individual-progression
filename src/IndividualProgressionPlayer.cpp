@@ -316,8 +316,6 @@ public:
         return (currentState == otherPlayerState);
     }
 
-
-
     void OnPlayerCreatureKill(Player* killer, Creature* killed) override
     {
         sIndividualProgression->checkKillProgression(killer, killed);
