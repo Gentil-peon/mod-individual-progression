@@ -441,6 +441,15 @@ public:
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
+            case  AREA_STORMWIND_CITY:
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC)
+                    || (isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_TBC)))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
             case AREA_LIGHTS_HOPE:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)
                     || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
