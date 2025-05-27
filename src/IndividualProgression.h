@@ -78,6 +78,7 @@ enum ProgressionAreas
 {
 	AREA_AZSHARA                         = 16,
     AREA_THE_DARK_PORTAL                 = 72,
+    AREA_TIRISFAL_RUINS                  = 153,
     AREA_DREADMAUL_ROCK                  = 249,
     AREA_RUINS_OF_THAURISSAN             = 250,
     AREA_BLACKROCK_MOUNTAIN              = 254,
@@ -92,6 +93,7 @@ enum ProgressionAreas
     AREA_THE_SHATTERED_STRAND            = 1228,
     AREA_SOUTHRIDGE_BEACH                = 1231,
     AREA_HALDARR_ENCAMPMENT              = 1236,
+    AREA_JAGGEDSWINE_FARM                = 1297,
     AREA_DREADMAUL_HOLD                  = 1437,
     AREA_DREADMAUL_POST                  = 1439,
     AREA_SERPENTS_COIL                   = 1440,

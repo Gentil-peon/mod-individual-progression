@@ -396,8 +396,10 @@ public:
                 }
                 break;
             case AREA_DUROTAR:
+            case AREA_JAGGEDSWINE_FARM:
             case AREA_ROCKTUSK_FARM:
             case AREA_TIRISFAL_GLADES:
+            case AREA_TIRISFAL_RUINS:
             case AREA_RUINS_OF_LORDAERON:
             case AREA_MULGORE:
             case AREA_VALLEY_OF_HEROES:
