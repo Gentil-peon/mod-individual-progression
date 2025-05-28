@@ -14,10 +14,10 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_preaq' WHERE `map` = 1 AND `
 /* 1.11 - Naxxramas */
 /* Naxx Vanilla meeting stone phased until appropriate phase */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (193166);
-/* Naxx Vanilla teleport stone phased until appropriate phase */
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (361001);
 /* Floating Naxx in EP should be visible if player have unlocked Vanilla Naxx and should disappear if player have unlocked WotLK */
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40_pre_wotlk' WHERE `id` = 181056 and `map` = 0;
+/* Not working */
+/* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40_pre_wotlk' WHERE `id` = 181056 and `map` = 0; */
+
 /* Orb of Naxxramas - disabled by default */
 /* Most players will expect these gobjects not to be present in Vanilla Naxx */
 /* If you use mod-playerbots, bots may have problems on bosses like the Horsemen or Thadeuss, enabling this will allow you to go directly to Sapphiron */

@@ -18,6 +18,7 @@
 #include "CellImpl.h"
 #include "GridNotifiers.h"
 #include "GridNotifiersImpl.h"
+#include "IndividualProgression.h"
 #include "PassiveAI.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -1376,7 +1377,21 @@ public:
         {
             if (InstanceScript *instance = player->GetInstanceScript())
             {
-                if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
+                int spawnMaskOrbs = 0;
+                QueryResult result = WorldDatabase.Query("SELECT spawnMask FROM gameobject WHERE id IN (202278, 202277)");
+                if (result)
+                {
+                    do
+                    {
+                        uint32 spawnMask = (*result)[0].Get<uint32>();
+                        spawnMaskOrbs = spawnMaskOrbs + spawnMask;
+                    } while (result->NextRow());
+                }
+                if (spawnMaskOrbs / 2 == 15) //spawnMask == 15 -> Orbs are visible, spawnMask =/= 15 -> No skip allowed
+                {
+                    return true;
+                }
+                else if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
                 {
                     player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
                     return true;
@@ -1445,7 +1460,19 @@ public:
         if (player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             // Naxx 40 cannot be exited via portals, as in Classic
-            return false;
+            if (!sIndividualProgression->naxxExitViaPortals)
+            {
+                return false;
+            }
+            else // Naxx 40 can be exited via portals (option in conf)
+            {
+                case 5196:
+                case 5197:
+                case 5198:
+                case 5199:
+                    player->TeleportTo(0, 3091.26f, -3874.52f, 138.36f, 3.31f);
+                    break;
+            }
         }
         switch (areaTrigger->entry)
         {
