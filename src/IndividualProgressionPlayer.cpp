@@ -501,6 +501,7 @@ public:
             case AREA_SUNWELL_PLATEAU:
             case AREA_SUNWELL_PLATEAU_EXTERIOR:
             case AREA_MAGISTERS_TERRACE:
+            case AREA_MAGISTERS_TERRACE_EXTERIOR:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4)
                     || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
