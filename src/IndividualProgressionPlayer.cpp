@@ -3,7 +3,8 @@
 enum ProgressionLevelThreshold
 {
     IP_LEVEL_VANILLA = 60,
-    IP_LEVEL_TBC = 70
+    IP_LEVEL_TBC = 70,
+    IP_LEVEL_WOTLK = 80
 };
 
 class IndividualPlayerProgression : public PlayerScript
@@ -469,7 +470,38 @@ public:
             case AREA_THE_HORDE_VALIANTS_RING:
             case AREA_ARGENT_PAVILION:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= 80))
+                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_GHOSTLANDS:
+            case AREA_HATCHET_HILLS:
+            case AREA_AMANI_PASS:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_3)
+                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_SHATTRATH_CITY:
+            case AREA_ISLE_OF_QUEL_DANAS:
+            case AREA_SILVERMOON_S_PRIDE:
+            case AREA_SHATTERED_SUN_STAGING:
+            case AREA_SUN_S_REACH_SANCTUM:
+            case AREA_SUN_S_REACH_HARBOR:
+            case AREA_SUN_S_REACH_ARMORY:
+            case AREA_DAWNSTAR_VILLAGE:
+            case AREA_DAWNING_SQUARE:
+            case AREA_GREENGILL_COAST:
+            case AREA_SUNWELL_PLATEAU:
+            case AREA_MAGISTERS_TERRACE:
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4)
+                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);

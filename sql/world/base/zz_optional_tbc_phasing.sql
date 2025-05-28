@@ -18,7 +18,18 @@ WHERE `map` = 530 AND `id1` IN (
 23762, -- Brend, Ghostlands
 23764, -- Marge, Ghostlands
 23766, -- Morgom, Ghostlands
-23858, -- Donna Brascoe, Ghostlands
+23858 -- Donna Brascoe, Ghostlands
+);
+
+/* Temp */
+UPDATE `creature` SET `ScriptName` = '' 
+WHERE `map` = 530 AND `id1` IN (
+25145 -- Budd's Bodyguard, Ghostlands
+);
+
+/* @IPPPHASE 65536 */
+UPDATE `creature` SET `phaseMask` = 65536 
+WHERE `map` = 530 AND `id1` IN (
 25145 -- Budd's Bodyguard, Ghostlands
 );
 
@@ -72,8 +83,20 @@ WHERE `map` = 530 AND `id1` IN (
 25112 -- Anchorite Ayuri, Isle of Quel Danas
 );
 
-/* Model bug when phasing, so reset script */
+/* Temp */
 UPDATE `creature` SET `ScriptName` = '' 
+WHERE `map` = 530 AND `id1` IN (
+24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
+25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
+25134, -- Shattered Sun Trainee, Shattrath
+25135, -- Shattered Sun Trainee, Shattrath
+25136, -- Shattered Sun Trainee, Shattrath
+25137, -- Shattered Sun Trainee, Shattrath
+25143 -- Shattered Sun Veteran, Shattrath
+);
+
+/* @IPPPHASE 65536 */
+UPDATE `creature` SET `phaseMask` = 65536 
 WHERE `map` = 530 AND `id1` IN (
 24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
 25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
