@@ -2,7 +2,7 @@
     This will phase TBC npcs & objects placed in Outland & Quel'Danas areas until they were originally added to the game.
 */
 
-/* 2.3 */
+/* Patch 2.3 - Zul Aman */
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc_t4' 
 WHERE `map` = 530 AND `id1` IN (
 23559, -- Budd Nedreck, Ghostlands
@@ -20,30 +20,15 @@ WHERE `map` = 530 AND `id1` IN (
 23766, -- Morgom, Ghostlands
 23858 -- Donna Brascoe, Ghostlands
 );
-
-/* Temp */
-UPDATE `creature` SET `ScriptName` = '' 
-WHERE `map` = 530 AND `id1` IN (
-25145 -- Budd's Bodyguard, Ghostlands
-);
-
-/* @IPPPHASE 65536 */
+/* Guards as @IPPPHASE 65536 */
 UPDATE `creature` SET `phaseMask` = 65536 
 WHERE `map` = 530 AND `id1` IN (
 25145 -- Budd's Bodyguard, Ghostlands
 );
 
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t4' 
-WHERE `map` = 530 AND `id` IN (
-186251, -- Meeting Stone, Ghostlands
-186280, -- Orcish Grog, Ghostlands
-186285, -- Zul'Aman Fire Med, Ghostlands
-186286, -- Zul'Aman Fire Large, Ghostlands
-186302, -- Case of Orcish Grog, Ghostlands
-186323 -- Burning Troll Hut, Ghostlands
-);
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t4' WHERE `map` = 530 AND `id` IN (186251, 186280, 186285, 186286, 186302, 186323);
 
-/* 2.4 */
+/* 2.4 - Sunwell */
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc_t5' 
 WHERE `map` = 530 AND `id1` IN (
 19202, -- Emissary Mordin, Shattrath
@@ -55,9 +40,7 @@ WHERE `map` = 530 AND `id1` IN (
 25034, -- Tradesman Portanuus, Isle of Quel Danas
 25088, -- Captain Valindria, Isle of Quel Danas
 25133, -- Astromancer Darnarian, Isle of Quel Danas
-25138, -- Captain Dranarus, Shattrath
 25140, -- Lord Torvos, Shattrath
-25141, -- Commander Steele, Shattrath
 25142, -- Shattered Sun Marksman, Shattrath
 25153, -- Shattered Sun Magi, Shattrath
 25155, -- Shattered Sun Cleric, Shattrath
@@ -68,7 +51,6 @@ WHERE `map` = 530 AND `id1` IN (
 27667, -- Anwehu, Shattrath
 37527 -- Halduron Brightwing, Isle of Quel Danas
 );
-
 UPDATE `creature` SET `ScriptName` = 'npc_suns_reach_reclamation_ipp_tbc_t5' 
 WHERE `map` = 530 AND `id1` IN (
 24932, -- Exarch Nasuun, Shattrath
@@ -82,20 +64,7 @@ WHERE `map` = 530 AND `id1` IN (
 25108, -- Vindicator Kaalan, Isle of Quel Danas
 25112 -- Anchorite Ayuri, Isle of Quel Danas
 );
-
-/* Temp */
-UPDATE `creature` SET `ScriptName` = '' 
-WHERE `map` = 530 AND `id1` IN (
-24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
-25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
-25134, -- Shattered Sun Trainee, Shattrath
-25135, -- Shattered Sun Trainee, Shattrath
-25136, -- Shattered Sun Trainee, Shattrath
-25137, -- Shattered Sun Trainee, Shattrath
-25143 -- Shattered Sun Veteran, Shattrath
-);
-
-/* @IPPPHASE 65536 */
+/* NPCs with special behaviours as @IPPPHASE 65536 */
 UPDATE `creature` SET `phaseMask` = 65536 
 WHERE `map` = 530 AND `id1` IN (
 24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
@@ -104,14 +73,9 @@ WHERE `map` = 530 AND `id1` IN (
 25135, -- Shattered Sun Trainee, Shattrath
 25136, -- Shattered Sun Trainee, Shattrath
 25137, -- Shattered Sun Trainee, Shattrath
+25138, -- Captain Dranarus, Shattrath
+25141, -- Commander Steele, Shattrath
 25143 -- Shattered Sun Veteran, Shattrath
 );
 
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' 
-WHERE `map` = 530 AND `id` IN (
-187056, -- Shattrath Portal to Isle of Quel Danas, Shattrath
-187116, -- Monument to the Fallen, Isle of Quel Danas
-187345, -- Sunwell Plateau, Shattrath + Isle of Quel Danas
-188171, -- Meeting Stone, Isle of Quel Danas
-188172 -- Meeting Stone, Isle of Quel Danas
-);
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' WHERE `map` = 530 AND `id` IN (187056, 187116, 187345, 188171, 188172);
