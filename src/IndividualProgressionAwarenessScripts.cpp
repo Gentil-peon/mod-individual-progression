@@ -1,5 +1,5 @@
 #include "IndividualProgression.h"
-
+#include "WorldState.h"
 
 class gobject_ipp_preaq : public GameObjectScript
 {
@@ -188,6 +188,58 @@ public:
     }
 };
 
+class gobject_ipp_tbc_t4 : public GameObjectScript
+{
+public:
+    gobject_ipp_tbc_t4() : GameObjectScript("gobject_ipp_tbc_t4") { }
+
+    struct gobject_ipp_tbc_t4AI: GameObjectAI
+    {
+        explicit gobject_ipp_tbc_t4AI(GameObject* object) : GameObjectAI(object) { };
+
+        bool CanBeSeen(Player const* player) override
+        {
+            if (player->IsGameMaster() || !sIndividualProgression->enabled)
+            {
+                return true;
+            }
+            Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
+            return sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_3);
+        }
+    };
+
+    GameObjectAI* GetAI(GameObject* object) const override
+    {
+        return new gobject_ipp_tbc_t4AI(object);
+    }
+};
+
+class gobject_ipp_tbc_t5 : public GameObjectScript
+{
+public:
+    gobject_ipp_tbc_t5() : GameObjectScript("gobject_ipp_tbc_t5") { }
+
+    struct gobject_ipp_tbc_t5AI: GameObjectAI
+    {
+        explicit gobject_ipp_tbc_t5AI(GameObject* object) : GameObjectAI(object) { };
+
+        bool CanBeSeen(Player const* player) override
+        {
+            if (player->IsGameMaster() || !sIndividualProgression->enabled)
+            {
+                return true;
+            }
+            Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
+            return sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_4);
+        }
+    };
+
+    GameObjectAI* GetAI(GameObject* object) const override
+    {
+        return new gobject_ipp_tbc_t5AI(object);
+    }
+};
+
 class gobject_ipp_wotlk : public GameObjectScript
 {
 public:
@@ -211,6 +263,32 @@ public:
     GameObjectAI* GetAI(GameObject* object) const override
     {
         return new gobject_ipp_wotlkAI(object);
+    }
+};
+
+class gobject_ipp_wotlk_icc : public GameObjectScript
+{
+public:
+    gobject_ipp_wotlk_icc() : GameObjectScript("gobject_ipp_wotlk_icc") { }
+
+    struct gobject_ipp_wotlk_iccAI: GameObjectAI
+    {
+        explicit gobject_ipp_wotlk_iccAI(GameObject* object) : GameObjectAI(object) { };
+
+        bool CanBeSeen(Player const* player) override
+        {
+            if (player->IsGameMaster() || !sIndividualProgression->enabled)
+            {
+                return true;
+            }
+            Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
+            return sIndividualProgression->hasPassedProgression(target, PROGRESSION_WOTLK_TIER_3);
+        }
+    };
+
+    GameObjectAI* GetAI(GameObject* object) const override
+    {
+        return new gobject_ipp_wotlk_iccAI(object);
     }
 };
 
@@ -496,6 +574,50 @@ public:
     }
 };
 
+class npc_suns_reach_reclamation_ipp_tbc_t5 : public CreatureScript
+{
+public:
+    npc_suns_reach_reclamation_ipp_tbc_t5() : CreatureScript("npc_suns_reach_reclamation_ipp_tbc_t5") { }
+
+    struct npc_suns_reach_reclamation_ipp_tbc_t5AI: ScriptedAI
+    {
+        /*explicit*/ npc_suns_reach_reclamation_ipp_tbc_t5AI(Creature* creature) : ScriptedAI(creature) { };
+
+        bool CanBeSeen(Player const* player) override
+        {
+            if (player->IsGameMaster() || !sIndividualProgression->enabled)
+            {
+                return true;
+            }
+            Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
+            return sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_4);
+        }
+    };
+
+    bool OnQuestReward(Player* /*player*/, Creature* /*creature*/, const Quest* quest, uint32 /*slot*/) override
+    {
+        sWorldState->AddSunsReachProgress(quest->GetQuestId());
+        return true;
+    }
+
+    CreatureAI* GetAI(Creature* creature) const override
+    {
+        return new npc_suns_reach_reclamation_ipp_tbc_t5AI(creature);
+    }
+};
+
+class npc_suns_reach_reclamation : public CreatureScript
+{
+public:
+    npc_suns_reach_reclamation() : CreatureScript("npc_suns_reach_reclamation") { }
+
+    bool OnQuestReward(Player* /*player*/, Creature* /*creature*/, const Quest* quest, uint32 /*slot*/) override
+    {
+        sWorldState->AddSunsReachProgress(quest->GetQuestId());
+        return true;
+    }
+};
+
 class npc_ipp_wotlk : public CreatureScript
 {
 public:
@@ -707,7 +829,10 @@ void AddSC_mod_individual_progression_awareness()
     new gobject_ipp_si();      // Scourge Invasion
     new gobject_ipp_naxx40();
     new gobject_ipp_tbc();
+    new gobject_ipp_tbc_t4();
+    new gobject_ipp_tbc_t5();
     new gobject_ipp_wotlk();
+    new gobject_ipp_wotlk_icc();
     new npc_ipp_preaq();       // Cenarion Hold NPCs
     new npc_ipp_we();          // War Effort NPCs in cities
 	new npc_ipp_aq();
@@ -723,5 +848,6 @@ void AddSC_mod_individual_progression_awareness()
     new npc_ipp_wotlk_totc();
     new npc_ipp_wotlk_icc();
     new npc_ipp_ds2();
+    new npc_suns_reach_reclamation_ipp_tbc_t5();
     new npc_training_dummy_ipp_wotlk();
 }
