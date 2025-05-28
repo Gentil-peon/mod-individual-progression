@@ -606,18 +606,6 @@ public:
     }
 };
 
-class npc_suns_reach_reclamation : public CreatureScript
-{
-public:
-    npc_suns_reach_reclamation() : CreatureScript("npc_suns_reach_reclamation") { }
-
-    bool OnQuestReward(Player* /*player*/, Creature* /*creature*/, const Quest* quest, uint32 /*slot*/) override
-    {
-        sWorldState->AddSunsReachProgress(quest->GetQuestId());
-        return true;
-    }
-};
-
 class npc_ipp_wotlk : public CreatureScript
 {
 public:
