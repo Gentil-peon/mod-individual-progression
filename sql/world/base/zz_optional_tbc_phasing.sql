@@ -11,12 +11,14 @@ WHERE `map` = 530 AND `id1` IN (
 23716, -- Hexxer Corpse, Ghostlands
 23718, -- Mack, Ghostlands
 23724, -- Samir, Ghostlands
+23745, -- Garg, Ghostlands
 23747, -- Packhorse, Ghostlands
 23748, -- Kurzel, Ghostlands
 23761, -- Prigmon, Ghostlands
 23762, -- Brend, Ghostlands
 23764, -- Marge, Ghostlands
 23766, -- Morgom, Ghostlands
+23858, -- Donna Brascoe, Ghostlands
 25145 -- Budd's Bodyguard, Ghostlands
 );
 
@@ -38,21 +40,14 @@ WHERE `map` = 530 AND `id1` IN (
 24813, -- Exarch Larethor, Isle of Quel Danas
 24923, -- Shattered Sun Channeler, Shattrath
 24937, -- Magistrix Seyla, Hellfire Peninsula
-24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
 25032, -- Eldara Dawnrunner, Isle of Quel Danas
 25034, -- Tradesman Portanuus, Isle of Quel Danas
 25088, -- Captain Valindria, Isle of Quel Danas
-25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
 25133, -- Astromancer Darnarian, Isle of Quel Danas
-25134, -- Shattered Sun Trainee, Shattrath
-25135, -- Shattered Sun Trainee, Shattrath
-25136, -- Shattered Sun Trainee, Shattrath
-25137, -- Shattered Sun Trainee, Shattrath
 25138, -- Captain Dranarus, Shattrath
 25140, -- Lord Torvos, Shattrath
 25141, -- Commander Steele, Shattrath
 25142, -- Shattered Sun Marksman, Shattrath
-25143, -- Shattered Sun Veteran, Shattrath
 25153, -- Shattered Sun Magi, Shattrath
 25155, -- Shattered Sun Cleric, Shattrath
 25167, -- General Tiras'alan, Shattrath
@@ -75,6 +70,18 @@ WHERE `map` = 530 AND `id1` IN (
 25069, -- Magister Ilastar, Isle of Quel Danas
 25108, -- Vindicator Kaalan, Isle of Quel Danas
 25112 -- Anchorite Ayuri, Isle of Quel Danas
+);
+
+/* Model bug when phasing, so reset script */
+UPDATE `creature` SET `ScriptName` = '' 
+WHERE `map` = 530 AND `id1` IN (
+24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
+25134, -- Shattered Sun Trainee, Shattrath
+25135, -- Shattered Sun Trainee, Shattrath
+25136, -- Shattered Sun Trainee, Shattrath
+25137, -- Shattered Sun Trainee, Shattrath
+25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
+25143 -- Shattered Sun Veteran, Shattrath
 );
 
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' 
