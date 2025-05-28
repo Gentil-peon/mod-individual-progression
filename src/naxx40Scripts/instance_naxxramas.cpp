@@ -1373,39 +1373,34 @@ public:
 
         if (player->GetMap()->GetSpawnMode() != RAID_DIFFICULTY_10MAN_HEROIC)
         {
+            if ((instance->GetBossState(BOSS_MAEXXNA)  != DONE) ||
+                (instance->GetBossState(BOSS_LOATHEB)  != DONE) ||
+                (instance->GetBossState(BOSS_THADDIUS) != DONE) ||
+                (instance->GetBossState(BOSS_HORSEMAN) != DONE))
+                return false;
+
             player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
             return true;
         }
-        else
+        
+        if (player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            int spawnMaskOrbToSaphiron = 0;
-            QueryResult result = WorldDatabase.Query("SELECT spawnMask FROM gameobject WHERE id = 202278");
-            if (result)
+            if (sIndividualProgression->naxxSkipToSaphiron)
             {
-                do
-                {
-                    uint32 spawnMask = (*result)[0].Get<uint32>();
-                    spawnMaskOrbToSaphiron = spawnMask;
-                } while (result->NextRow());
-
-                if (spawnMaskOrbToSaphiron == 15) //spawnMask == 15 -> Orbs are visible in all Naxx instance type and skip is allowed, spawnMask == 3 -> No skip allowed
-                {
-                    player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
-                    return true;
-                }
+                player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
+                return true;
             }
-            else {
-                for (int i = 0; i < BOSS_SAPPHIRON; ++i)
-                {
-                    if (instance->GetBossState(i) != DONE)
-                        return false;
-                }
 
-                if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
-                {
-                    player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
-                    return true;
-                }
+            for (int i = 0; i < BOSS_SAPPHIRON; ++i)
+            {
+                if (instance->GetBossState(i) != DONE)
+                    return false;
+            }
+
+            if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
+            {
+                player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
+                return true;
             }
         }
 

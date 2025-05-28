@@ -133,12 +133,20 @@ IndividualProgression.RequirePreAQQuests = 1
 IndividualProgression.RequireNaxxStrathEntrance = 1
 
 # IndividualProgression.NaxxExitViaPortals
-#        Description: If enabled, Naxx 40 can be exited via portals.
-#                     If disabled, Naxx 40 cannot be exited via portals as in original classic vanilla.
+#        Description: If disabled, Naxx 40 cannot be exited via portals as in Classic Vanilla.
+#                     If enabled, Naxx 40 can be exited via portals as in WotLK.
 #        Default:     0 - Disabled
 #                     1 - Enabled
 #
 IndividualProgression.NaxxExitViaPortals = 0
+
+# IndividualProgression.NaxxSkipToSaphiron
+#        Description: If disabled, players can't directly skip the 4 wings of the raid as in Classic Vanilla.
+#                     If enabled, players can go directly to Sapphiron and Kel'Thuzad as in WotLK.
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+IndividualProgression.NaxxSkipToSaphiron = 0
 
 # IndividualProgression.MoltenCore.ManualRuneHandling
 #        Description: Defines whether Molten Core runes are handled manually (dousing through Aqual Quintessence) 

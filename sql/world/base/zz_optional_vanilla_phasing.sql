@@ -18,11 +18,6 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND 
 /* Not working */
 /* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40_pre_wotlk' WHERE `id` = 181056 and `map` = 0; */
 
-/* Orb of Naxxramas - disabled by default */
-/* Most players will expect these gobjects not to be present in Vanilla Naxx */
-/* If you use mod-playerbots, bots may have problems on bosses like the Horsemen or Thadeuss, enabling this will allow you to go directly to Sapphiron */
-/* UPDATE `gameobject` SET `spawnMask` = 15 WHERE `id` IN (202278, 202277); */
-
 /* Flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there */
 /* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
 10583, -- Gryfe, Marshal's Refuge, Flight Master

@@ -40,7 +40,7 @@ public:
         if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-            player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+            player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
         }
         return true;
     }
