@@ -78,4 +78,4 @@ WHERE `map` = 530 AND `id1` IN (
 25143 -- Shattered Sun Veteran, Shattrath
 );
 
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' WHERE `map` = 530 AND `id` IN (187056, 187116, 187345, 188171, 188172);
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' WHERE `map` = 530 AND `id` IN (187056, 187116, 187345, 187356, 187357, 188171, 188172);
