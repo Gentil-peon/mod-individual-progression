@@ -1364,40 +1364,51 @@ public:
 
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
     {
-        if (player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
+        if (!player->IsAlive() || player->IsInCombat())
+            return false;
+
+        InstanceScript* instance = player->GetInstanceScript();
+        if (!instance)
+            return false;
+
+        if (player->GetMap()->GetSpawnMode() != RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            InstanceScript* instance = player->GetInstanceScript();
-            for (int i = 0; i < BOSS_SAPPHIRON; ++i)
-            {
-                if (instance->GetBossState(i) != DONE)
-                    return false;
-            }
+            player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
+            return true;
         }
-        if (player->IsAlive() && !player->IsInCombat())
+        else
         {
-            if (InstanceScript *instance = player->GetInstanceScript())
+            int spawnMaskOrbToSaphiron = 0;
+            QueryResult result = WorldDatabase.Query("SELECT spawnMask FROM gameobject WHERE id = 202278");
+            if (result)
             {
-                int spawnMaskOrbs = 0;
-                QueryResult result = WorldDatabase.Query("SELECT spawnMask FROM gameobject WHERE id IN (202278, 202277)");
-                if (result)
+                do
                 {
-                    do
-                    {
-                        uint32 spawnMask = (*result)[0].Get<uint32>();
-                        spawnMaskOrbs = spawnMaskOrbs + spawnMask;
-                    } while (result->NextRow());
-                }
-                if (spawnMaskOrbs / 2 == 15) //spawnMask == 15 -> Orbs are visible, spawnMask =/= 15 -> No skip allowed
+                    uint32 spawnMask = (*result)[0].Get<uint32>();
+                    spawnMaskOrbToSaphiron = spawnMask;
+                } while (result->NextRow());
+
+                if (spawnMaskOrbToSaphiron == 15) //spawnMask == 15 -> Orbs are visible in all Naxx instance type and skip is allowed, spawnMask == 3 -> No skip allowed
                 {
+                    player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
                     return true;
                 }
-                else if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
+            }
+            else {
+                for (int i = 0; i < BOSS_SAPPHIRON; ++i)
+                {
+                    if (instance->GetBossState(i) != DONE)
+                        return false;
+                }
+
+                if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
                 {
                     player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
                     return true;
                 }
             }
         }
+
         return false;
     }
 };

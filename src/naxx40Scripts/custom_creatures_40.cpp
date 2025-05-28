@@ -10,6 +10,11 @@ class npc_naxx40_area_trigger : public CreatureScript
 private:
     static bool isAttuned(Player* player)
     {
+        if (player->IsGameMaster())
+        {
+            return true;
+        }
+
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
             return true;
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
