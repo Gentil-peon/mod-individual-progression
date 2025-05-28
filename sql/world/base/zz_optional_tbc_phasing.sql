@@ -1,8 +1,9 @@
 /*  
-    This will phase TBC npcs & objects placed in Outland & Quel'Danas areas until they were originally added to the game.
+    This will phase TBC NPCs & Gobjects placed in TBC areas until they were originally added to the game.
 */
 
 /* Patch 2.3 - Zul Aman */
+/* Open world Zul Aman NPCs */
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc_t4' 
 WHERE `map` = 530 AND `id1` IN (
 23559, -- Budd Nedreck, Ghostlands
@@ -26,9 +27,11 @@ WHERE `map` = 530 AND `id1` IN (
 25145 -- Budd's Bodyguard, Ghostlands
 );
 
+/* Open world Zul Aman gobjects, including meeting stone */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t4' WHERE `map` = 530 AND `id` IN (186251, 186280, 186285, 186286, 186302, 186323);
 
 /* 2.4 - Sunwell */
+/* Open world Sunwell NPCs, including quest/daily NPCs to prevent ppl from building up reputation before Sunwell phase */
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc_t5' 
 WHERE `map` = 530 AND `id1` IN (
 19202, -- Emissary Mordin, Shattrath
@@ -78,4 +81,5 @@ WHERE `map` = 530 AND `id1` IN (
 25143 -- Shattered Sun Veteran, Shattrath
 );
 
+/* Open world Sunwell gobjects, including meeting stone */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc_t5' WHERE `map` = 530 AND `id` IN (187056, 187116, 187345, 187356, 187357, 188171, 188172);

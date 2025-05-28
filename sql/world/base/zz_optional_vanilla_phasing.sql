@@ -3,6 +3,27 @@
     This includes quest givers and flight paths. 
 */
 
+/* 1.7 - Zul Gurub */
+/* Zul Gurub meeting stone phased until appropriate phase */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_preaq' WHERE `map` = 0 AND `zoneId` = 33 AND `id` IN (185433);
+
+/* 1.9 - AQ */
+/* AQ meeting stone phased until pre-aq phase (at least) */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_preaq' WHERE `map` = 1 AND `id` IN (185322);
+
+/* 1.11 - Naxxramas */
+/* Naxx Vanilla meeting stone phased until appropriate phase */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (193166);
+/* Naxx Vanilla teleport stone phased until appropriate phase */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (361001);
+
+/* Flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there */
+/* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
+10583, -- Gryfe, Marshal's Refuge, Flight Master
+16227  -- Bragok, Ratchet, Flight Master
+); */
+
+/* 2.0 - NPCs/Gobjects added in Eastern/Kalimdor during TBC pre-patch */
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 16288, -- Advisor Sorrelon, The Sepulcher
 17092, -- Advisor Duskingdawn, Tarren Mill
@@ -36,44 +57,16 @@ UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` = 19848 -- Harbinger Ennarth
 AND `map` = 0; -- Stormwind only
 
--- fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle 
+/* Fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle */
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
--- the flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there
-/* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
-10583, -- Gryfe, Marshal's Refuge, Flight Master
-16227  -- Bragok, Ratchet, Flight Master
-); */
-UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (10583, 16227);
-
--- Outland map outside Dark Portal
+/* Outland map outside Dark Portal */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 42457;
 
--- remove interactions between Cersei, Lorrin and the orcs in Stonard 
+/* Remove interactions between Cersei, Lorrin and the orcs in Stonard */
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
 
--- hide Rogg and his anvil + forge at the entrance of Orgrimmar until WotLK
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` = 37072;
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (347, 387);
-
--- hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 49832; -- Darnassus
-
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
-150747, 150748, 150749, 150750, 150751, 150752, 150753, 150755, -- Orgrimmar
-100500, 100501, 100502, 100503, 268683, -- Undercity
-932, 933, 100156, 100157, 100158, 100159, 100505, 100506, 150736, 150737, 150738, 150740, 150742, 150743, 150744, 150746, 151239,  -- Stormwind
-121574 -- Darnassus
-);
-
--- hide barber in Kalimdor/Eastern Kingdom/Outland until WotLK - disabled by default, because most players will expect barbers to be there
-/* UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id1` IN (29139, 29141, 29142, 29143, 29145);
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id` IN (190683, 190684, 190697, 190698, 190699, 190704, 190710, 190711, 190712, 191028, 191029, 191030); */
-
--- hide training dummy in Kalimdor/Eastern Kingdom/Outland until WotLK - disabled by default, because most players will expect dummy to be there
-/* UPDATE `creature` SET `ScriptName` = 'npc_training_dummy_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id1` IN (31144, 31146, 32666, 32667); */
-
--- hide guild vaults until TBC (was introduced during 2.3) - disabled by default, because most players will expect these gobject to be there
+/* Hide guild vaults until TBC (was introduced during 2.3) - disabled by default, because most players will expect these gobject to be there */
 /* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` IN (
 12496, 12497,
 20621,
@@ -88,4 +81,26 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `map` IN (0, 1,
 49095,
 50356, 50357
 ); */
-UPDATE `gameobject` SET `ScriptName` = '' WHERE `guid` IN (12496, 44716);
+
+/* Hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 49832; -- Darnassus
+
+/* 3.0 - NPCs/Gobjects added in Eastern/Kalimdor during WotLK pre-patch */
+/* Hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
+150747, 150748, 150749, 150750, 150751, 150752, 150753, 150755, -- Orgrimmar
+100500, 100501, 100502, 100503, 268683, -- Undercity
+932, 933, 100156, 100157, 100158, 100159, 100505, 100506, 150736, 150737, 150738, 150740, 150742, 150743, 150744, 150746, 151239,  -- Stormwind
+121574 -- Darnassus
+);
+
+/* Hide Rogg and his anvil + forge at the entrance of Orgrimmar until WotLK */
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` = 37072;
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (347, 387);
+
+/* Hide barber in Kalimdor/Eastern Kingdom/Outland until WotLK - disabled by default, because most players will expect barbers to be there */
+/* UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id1` IN (29139, 29141, 29142, 29143, 29145);
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id` IN (190683, 190684, 190697, 190698, 190699, 190704, 190710, 190711, 190712, 191028, 191029, 191030); */
+
+/* Hide training dummy in Kalimdor/Eastern Kingdom/Outland until WotLK - disabled by default, because most players will expect dummy to be there */
+/* UPDATE `creature` SET `ScriptName` = 'npc_training_dummy_ipp_wotlk' WHERE `map` IN (0, 1, 530) AND `id1` IN (31144, 31146, 32666, 32667); */
