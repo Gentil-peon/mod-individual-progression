@@ -766,27 +766,6 @@ public:
             return 0;
         }
 
-        bool AreAllWingsCleared() const
-        {
-            return (GetBossState(BOSS_MAEXXNA) == DONE) && (GetBossState(BOSS_LOATHEB) == DONE) && (GetBossState(BOSS_THADDIUS) == DONE) && (GetBossState(BOSS_HORSEMAN) == DONE);
-        }
-
-        bool CheckRequiredBosses(uint32 bossId, Player const* /* player */) const override
-        {
-            switch (bossId)
-            {
-                case BOSS_SAPPHIRON:
-                    if (!AreAllWingsCleared())
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        }
-
         void Load(const char* data) override
         {
             _horsemanLoadDoneState = true;
@@ -1371,40 +1350,20 @@ public:
         if (!instance)
             return false;
 
-        if (player->GetMap()->GetSpawnMode() != RAID_DIFFICULTY_10MAN_HEROIC)
+        if (sIndividualProgression->naxxSkipToSaphiron)
         {
-            if ((instance->GetBossState(BOSS_MAEXXNA)  != DONE) ||
-                (instance->GetBossState(BOSS_LOATHEB)  != DONE) ||
-                (instance->GetBossState(BOSS_THADDIUS) != DONE) ||
-                (instance->GetBossState(BOSS_HORSEMAN) != DONE))
-                return false;
-
             player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
             return true;
         }
-        
-        if (player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
-        {
-            if (sIndividualProgression->naxxSkipToSaphiron)
-            {
-                player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
-                return true;
-            }
 
-            for (int i = 0; i < BOSS_SAPPHIRON; ++i)
-            {
-                if (instance->GetBossState(i) != DONE)
-                    return false;
-            }
+        if ((instance->GetBossState(BOSS_MAEXXNA)  != DONE) ||
+            (instance->GetBossState(BOSS_LOATHEB)  != DONE) ||
+            (instance->GetBossState(BOSS_THADDIUS) != DONE) ||
+            (instance->GetBossState(BOSS_HORSEMAN) != DONE))
+            return false;
 
-            if (instance->CheckRequiredBosses(BOSS_SAPPHIRON))
-            {
-                player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
-                return true;
-            }
-        }
-
-        return false;
+        player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
+        return true;
     }
 };
 
