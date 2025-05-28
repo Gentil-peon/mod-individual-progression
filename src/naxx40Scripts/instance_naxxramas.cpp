@@ -1466,14 +1466,20 @@ public:
             }
             else // Naxx 40 can be exited via portals (option in conf)
             {
-                case 5196:
-                case 5197:
-                case 5198:
-                case 5199:
-                    player->TeleportTo(0, 3091.26f, -3874.52f, 138.36f, 3.31f);
-                    break;
+                switch (areaTrigger->entry)
+                {
+                    case 5196:
+                    case 5197:
+                    case 5198:
+                    case 5199:
+                        player->TeleportTo(0, 3091.26f, -3874.52f, 138.36f, 3.31f);
+                        break;
+                }
+
+                return true;
             }
         }
+
         switch (areaTrigger->entry)
         {
             // Naxx 10 and 25 exits
