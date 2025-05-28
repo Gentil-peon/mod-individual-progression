@@ -76,11 +76,11 @@ WHERE `map` = 530 AND `id1` IN (
 UPDATE `creature` SET `ScriptName` = '' 
 WHERE `map` = 530 AND `id1` IN (
 24938, -- Shattered Sun Marksman, Shattrath + Isle of Quel Danas
+25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
 25134, -- Shattered Sun Trainee, Shattrath
 25135, -- Shattered Sun Trainee, Shattrath
 25136, -- Shattered Sun Trainee, Shattrath
 25137, -- Shattered Sun Trainee, Shattrath
-25115, -- Shattered Sun Warrior, Shattrath + Isle of Quel Danas
 25143 -- Shattered Sun Veteran, Shattrath
 );
 
