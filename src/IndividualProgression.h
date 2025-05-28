@@ -123,7 +123,7 @@ enum ProgressionAreas
     AREA_DAWNSTAR_VILLAGE                = 4089,
     AREA_DAWNING_SQUARE                  = 4090,
     AREA_GREENGILL_COAST                 = 4091,
-    AREA_SUNWELL_PLATEAU                 = 4094,
+    AREA_SUNWELL_PLATEAU_EXTERIOR        = 4094,
     AREA_MAGISTERS_TERRACE               = 4095,
     AREA_ARGENT_SUNREAVER_PAVILION       = 4666,
     AREA_ARGENT_SILVER_COVENANT_PAVILION = 4667,
