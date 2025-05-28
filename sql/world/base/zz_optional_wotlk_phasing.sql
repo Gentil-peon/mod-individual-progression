@@ -2,13 +2,9 @@
     This will phase WotLK TBC NPCs & Gobjects placed in WotLK areas until they were originally added to the game.
 */
 
-/* 3.1 - Ulduar */
-/* TODO */
-
 /* 3.3 - ICC */
 /* Open world ICC NPCs */
-UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_icc' 
-WHERE `map` = 571 AND `id1` IN (
+UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_icc' WHERE `map` = 571 AND `id1` IN (
 36624, -- Caladis Brightspear, Icecrown
 36642, -- Myralion Sunblaze, Icecrown
 36656, -- Silver Covenant Sentinel, Icecrown
