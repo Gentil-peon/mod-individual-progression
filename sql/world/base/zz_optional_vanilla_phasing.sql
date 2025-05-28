@@ -16,6 +16,8 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_preaq' WHERE `map` = 1 AND `
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (193166);
 /* Naxx Vanilla teleport stone phased until appropriate phase */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND `id` IN (361001);
+/* Floating Naxx in EP should be visible if player have unlocked Vanilla Naxx and should disappear if player have unlocked WotLK */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40_pre_wotlk' WHERE `id` = 181056 and `map` = 0;
 
 /* Flight masters at Ratchet and Marshal's Refuge were originally added in patch 1.11 - disabled by default, because most players will expect these npcs to be there */
 /* UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_naxx40' WHERE `entry` IN (
