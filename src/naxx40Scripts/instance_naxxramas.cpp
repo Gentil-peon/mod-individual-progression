@@ -1401,7 +1401,7 @@ public:
             return false;
         }
         // Set as regular 25 man if player diff 25 man heroic
-        if (diff == RAID_DIFFICULTY_25MAN_HEROIC)
+        if (player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
             {
@@ -1411,7 +1411,7 @@ public:
             return false;
         }
 
-        if ((diff == RAID_DIFFICULTY_10MAN_NORMAL || diff == RAID_DIFFICULTY_25MAN_NORMAL) && player->GetLevel() >= 80)
+        if ((player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL || player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_NORMAL) && player->GetLevel() >= 80)
         {
             switch (areaTrigger->entry)
             {

@@ -146,7 +146,7 @@ public:
             return false;
         }
 
-        if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_10MAN_HEROIC)
+        if (player->GetLevel() >= 80 && player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
             {
@@ -156,7 +156,7 @@ public:
             return false;
         }
 
-        if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_25MAN_HEROIC)
+        if (player->GetLevel() >= 80 && player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
             {
