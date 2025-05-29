@@ -39,19 +39,17 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-        player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-        player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-
-        if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player)) 
-            || sIndividualProgression->isExcludedFromProgression(player))
+        if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
+            || sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40)
+            || sIndividualProgression->isExcludedFromProgression(player)
+            || player->IsGameMaster())
         {
+            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
             player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
-            return true;
         }
 
-        return false; 
+        return true;
     }
 };
 

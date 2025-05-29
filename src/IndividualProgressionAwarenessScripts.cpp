@@ -117,7 +117,7 @@ public:
             
             if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5))
             {
-                return target->GetLevel() == 70;
+                return target->GetLevel() == IP_LEVEL_TBC;
             } 
             else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
             {
@@ -434,7 +434,7 @@ public:
 			
             if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_TBC_TIER_5))
             {
-                return target->GetLevel() == 70;
+                return target->GetLevel() == IP_LEVEL_TBC;
             } 
             else if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_AQ))
             {

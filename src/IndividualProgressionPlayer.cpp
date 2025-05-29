@@ -1,12 +1,5 @@
 #include "IndividualProgression.h"
 
-enum ProgressionLevelThreshold
-{
-    IP_LEVEL_VANILLA = 60,
-    IP_LEVEL_TBC = 70,
-    IP_LEVEL_WOTLK = 80
-};
-
 class IndividualPlayerProgression : public PlayerScript
 {
 
@@ -173,20 +166,6 @@ public:
         {
             return true;
         }
-
-        // if (mapid == MAP_NAXXRAMAS || mapid == MAP_ONYXIAS_LAIR)
-        // {   
-        //     if (player->GetLevel() < IP_LEVEL_WOTLK && player->GetRaidDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC)
-        //     {
-        //         return false;
-        //     }
-            
-        //     if (player->GetLevel() >= IP_LEVEL_WOTLK 
-        //         && (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC || player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC))
-        //     {
-        //         return false;
-        //     }
-        // }
 
         if (sIndividualProgression->isExcludedFromProgression(player))
         {

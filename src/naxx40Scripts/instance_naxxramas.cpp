@@ -1390,35 +1390,29 @@ public:
     bool OnTrigger(Player* player, AreaTrigger const* areaTrigger) override
     {
         // Do not allow entrance to Naxx 40 from Northrend
-        // Change 10 man heroic to regular 10 man
-        if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+        // Change 10 man heroic to regular 10 man, as when 10 man heroic is not available
+        Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
+        if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
-            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
         }
-
-        if ((player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL || player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_NORMAL))
+        switch (areaTrigger->entry)
         {
-            switch (areaTrigger->entry)
-            {
-                // Naxx 10 and 25 entrances
-                case 5191:
-                    player->TeleportTo(533, 3005.68f, -3447.77f, 293.93f, 4.65f);
-                    break;
-                case 5192:
-                    player->TeleportTo(533, 3019.34f, -3434.36f, 293.99f, 6.27f);
-                    break;
-                case 5193:
-                    player->TeleportTo(533, 3005.9f, -3420.58f, 294.11f, 1.58f);
-                    break;
-                case 5194:
-                    player->TeleportTo(533, 2992.5f, -3434.42f, 293.94f, 3.13f);
-                    break;
-            }
-            return true;
+            // Naxx 10 and 25 entrances
+            case 5191:
+                player->TeleportTo(533, 3005.68f, -3447.77f, 293.93f, 4.65f);
+                break;
+            case 5192:
+                player->TeleportTo(533, 3019.34f, -3434.36f, 293.99f, 6.27f);
+                break;
+            case 5193:
+                player->TeleportTo(533, 3005.9f, -3420.58f, 294.11f, 1.58f);
+                break;
+            case 5194:
+                player->TeleportTo(533, 2992.5f, -3434.42f, 293.94f, 3.13f);
+                break;
         }
-
-        return false;
+        return true;
     }
 };
 
@@ -1433,9 +1427,7 @@ public:
         {
             // Naxx 40 cannot be exited via portals, as in Classic
             if (!sIndividualProgression->naxxExitViaPortals)
-            {
                 return false;
-            }
             else // Naxx 40 can be exited via portals (option in conf)
             {
                 switch (areaTrigger->entry)
