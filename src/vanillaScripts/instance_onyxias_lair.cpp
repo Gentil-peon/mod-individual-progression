@@ -15,6 +15,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "IndividualProgression.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellInfo.h"
@@ -141,7 +142,7 @@ public:
         if (player->GetLevel() < 80 || diff == RAID_DIFFICULTY_25MAN_HEROIC)
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
 
-        if (!sMapMgr->PlayerCannotEnter(249, player, true))
+        if (!sMapMgr->PlayerCannotEnter(249, player, true) || isExcludedFromProgression(player))
             player->TeleportTo(249, 29.1607f, -71.3372f, -8.18032f, 4.58f);
 
         return true;

@@ -12,6 +12,8 @@ class gobject_naxx40_tele : public GameObjectScript
 private:
     static bool isAttuned(Player* player)
     {
+        if (player->IsGameMaster() || isExcludedFromProgression(player))
+            return true;
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
             return true;
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
@@ -40,7 +42,7 @@ public:
         // Do not allow entrance to Naxx WotLK from Eastern Plaguelands
         // Change 10, 25 and 25 man heroic to 10 man heroic
         player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-
+        
         if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
             player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
 
