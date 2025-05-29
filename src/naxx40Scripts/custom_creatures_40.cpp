@@ -42,31 +42,15 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {   
-                    if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
-                    {
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
 
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
- 
-                        if (isAttuned(player) 
-                            && player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
-                            {
-                                player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
-                            }
-                    }
-                    else
+                    if (isAttuned(player) || sIndividualProgression->isExcludedFromProgression(player))
                     {
-                        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
-                        {
-                            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-
-                            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-                        }
-                    }
+                        player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                    }  
                 }
 
             }
@@ -74,25 +58,16 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if(player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+                    if (isAttuned(player) || sIndividualProgression->isExcludedFromProgression(player))
                     {
-                        if (isAttuned(player) && player->GetLevel() < 80)
-                        {
-                            GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
-                            if (door)
-                                door->SetGoState(GO_STATE_ACTIVE);
-                        }
-                    }
-                    else
-                    {
-                        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
-                        {
-                            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                        player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
 
-                            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-                        }
+                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
+                        if (door)
+                            door->SetGoState(GO_STATE_ACTIVE);
                     }
                 }
             }

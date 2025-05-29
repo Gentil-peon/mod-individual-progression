@@ -136,49 +136,16 @@ public:
 
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
     {   
-        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80
-            && player->GetRaidDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC)
+        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
             player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
             player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-
-            return false;
-        }
-
-        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() >= 80 
-            && player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
-        {
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
-            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
-
-            return false;
-        }
-
-        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() >= 80
-            && player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC)
-        {
-            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
-            }
-            return false;
         }
 
         if (!sMapMgr->PlayerCannotEnter(249, player, true) || sIndividualProgression->isExcludedFromProgression(player))
         {
-            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-
-                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-            }
-
             player->TeleportTo(249, 29.1607f, -71.3372f, -8.18032f, 4.58f);
             return true;
         }

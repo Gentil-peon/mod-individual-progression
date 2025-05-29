@@ -1393,25 +1393,11 @@ public:
         // Change 10 man heroic to regular 10 man
         if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() >= 80)
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
-            }
-            return false;
-        }
-        // Set as regular 25 man if player diff 25 man heroic
-        if (player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC)
-        {
-            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() >= 80)
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
-            }
-            return false;
+            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
         }
 
-        if ((player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL || player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_NORMAL) && player->GetLevel() >= 80)
+        if ((player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL || player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_NORMAL))
         {
             switch (areaTrigger->entry)
             {
@@ -1509,7 +1495,7 @@ public:
             player->CompleteQuest(NAXX40_ENTRANCE_FLAG);
             player->RewardQuest(quest, 0, player, false, false);
             // Cast on player Naxxramas Entry Flag Trigger DND - Classic (spellID: 29296)
-            player->CastSpell(player, 29296, true); // for visual effect only, possible crash if cast on login
+            //player->CastSpell(player, 29296, true); // for visual effect only, possible crash if cast on login
         }
     }
 };

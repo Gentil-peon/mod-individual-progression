@@ -39,36 +39,19 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        if(player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+        player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+        player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+        player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
+
+        if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player)) 
+            || sIndividualProgression->isExcludedFromProgression(player))
         {
-            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-            player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-            player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-
-            if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) 
-                && isAttuned(player) 
-                && player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
-            {
-                player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
-                return true;
-            }
-            else
-                return false;
+            player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+            return true;
         }
-        else
-        {
-            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
 
-                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-            }
-            return false;
-        }
+        return false; 
     }
 };
 
