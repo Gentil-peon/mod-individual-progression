@@ -38,7 +38,7 @@ public:
 
     void OnPlayerSetMaxLevel(Player* player, uint32& maxPlayerLevel) override
     {
-        if (!sIndividualProgression->enabled || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || sIndividualProgression->isExcludedFromProgression(player))
         {
             return;
         }
@@ -126,7 +126,7 @@ public:
 
     void OnPlayerQuestComputeXP(Player* player, Quest const* quest, uint32& xpValue) override
     {
-        if (!sIndividualProgression->enabled || !sIndividualProgression->questXpFix || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || !sIndividualProgression->questXpFix || sIndividualProgression->isExcludedFromProgression(player))
         {
             return;
         }
@@ -143,7 +143,7 @@ public:
 
     void OnPlayerGiveXP(Player* player, uint32& amount, Unit* /*victim*/, uint8 xpSource) override
     {
-        if (!sIndividualProgression->enabled || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || sIndividualProgression->isExcludedFromProgression(player))
         {
             return;
         }
@@ -167,20 +167,9 @@ public:
         }
     }
 
-    // bool isExcludedFromProgression(Player* player)
-    // {
-    //     if(!sIndividualProgression->excludeAccounts) {
-    //         return false;
-    //     }
-    //     std::string accountName;
-    //     bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
-    //     std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
-    //     return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
-    // }
-
     bool OnPlayerBeforeTeleport(Player* player, uint32 mapid, float x, float y, float z, float /*orientation*/, uint32 /*options*/, Unit* /*target*/) override
     {
-        if (!sIndividualProgression->enabled || player->IsGameMaster() || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
         {
             return true;
         }
@@ -256,7 +245,7 @@ public:
 
     void OnPlayerCompleteQuest(Player* player, Quest const* quest) override
     {
-        if (!sIndividualProgression->enabled || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || sIndividualProgression->isExcludedFromProgression(player))
         {
             return;
         }
@@ -295,7 +284,7 @@ public:
 
     bool OnPlayerCanGroupInvite(Player* player, std::string& membername) override
     {
-        if (!sIndividualProgression->enabled || !sIndividualProgression->enforceGroupRules || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || !sIndividualProgression->enforceGroupRules || sIndividualProgression->isExcludedFromProgression(player))
         {
             return true;
         }
@@ -307,7 +296,7 @@ public:
 
     bool OnPlayerCanGroupAccept(Player* player, Group* group) override
     {
-        if (!sIndividualProgression->enabled || !sIndividualProgression->enforceGroupRules || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || !sIndividualProgression->enforceGroupRules || sIndividualProgression->isExcludedFromProgression(player))
         {
             return true;
         }
@@ -342,7 +331,7 @@ public:
 
     bool OnPlayerUpdateFishingSkill(Player* player, int32 /*skill*/, int32 /*zone_skill*/, int32 chance, int32 roll) override
     {
-        if (!sIndividualProgression->enabled || !sIndividualProgression->fishingFix || isExcludedFromProgression(player))
+        if (!sIndividualProgression->enabled || !sIndividualProgression->fishingFix || sIndividualProgression->isExcludedFromProgression(player))
             return true;
         if (chance < roll)
             return false;
@@ -357,7 +346,7 @@ public:
             case AREA_WILDBEND_RIVER:
             case AREA_TWILIGHT_VALE:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
-                    || (isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -369,14 +358,14 @@ public:
             case AREA_HIVE_ZORA:
             case AREA_HIVE_REGAL:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
-                    || (isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 else if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA)) 
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA)) 
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -389,7 +378,7 @@ public:
             case AREA_JADEMIR_LAKE:
             case AREA_TWILIGHT_GROVE:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_ONYXIA)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -435,7 +424,7 @@ public:
             case AREA_DREADMAUL_ROCK:
             case AREA_RUINS_OF_THAURISSAN:
                 if (((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC))
-                    || (isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -444,7 +433,7 @@ public:
                 break;
             case  AREA_STORMWIND_CITY:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC)
-                    || (isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_TBC)))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -453,7 +442,7 @@ public:
                 break;
             case AREA_LIGHTS_HOPE:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -470,7 +459,7 @@ public:
             case AREA_THE_HORDE_VALIANTS_RING:
             case AREA_ARGENT_PAVILION:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -481,7 +470,7 @@ public:
             case AREA_HATCHET_HILLS:
             case AREA_AMANI_PASS:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_3)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -503,7 +492,7 @@ public:
             case AREA_MAGISTERS_TERRACE:
             case AREA_MAGISTERS_TERRACE_EXTERIOR:
                 if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4)
-                    || (isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
@@ -514,7 +503,7 @@ public:
                 uint32 mapid = player->GetMapId();
                 if(((mapid == MAP_SHADOWFANG_KEEP || mapid == MAP_RAZORFEN_DOWNS || mapid == MAP_SCARLET_MONASTERY || mapid == MAP_STRATHOLME || mapid == MAP_DIRE_MAUL || mapid == MAP_KARAZHAN) &&
                     ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC)))
-                    || (isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_AQ);
