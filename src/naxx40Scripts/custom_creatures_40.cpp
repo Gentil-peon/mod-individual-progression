@@ -41,11 +41,11 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
+                    // Change 10, 25 and 25 man heroic to 10 man heroic
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+
                     if (isAttuned(player))
-                    {
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                         player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
-                    }
                 }
 
             }
