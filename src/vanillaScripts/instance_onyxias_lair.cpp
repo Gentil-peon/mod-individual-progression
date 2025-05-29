@@ -136,8 +136,7 @@ public:
 
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
     {   
-        Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-        if (player->GetLevel() < 80 && diff != RAID_DIFFICULTY_10MAN_HEROIC)
+        if (player->GetLevel() < 80 && player->GetRaidDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
             {

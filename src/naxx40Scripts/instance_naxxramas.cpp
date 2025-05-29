@@ -1391,8 +1391,7 @@ public:
     {
         // Do not allow entrance to Naxx 40 from Northrend
         // Change 10 man heroic to regular 10 man
-        Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-        if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
+        if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
             {

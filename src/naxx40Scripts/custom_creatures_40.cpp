@@ -42,8 +42,7 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {   
-                    Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-                    if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
+                    if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
                     {
                         if (isAttuned(player) && player->GetLevel() < 80)
                             player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
@@ -63,8 +62,7 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-                    if(diff == RAID_DIFFICULTY_10MAN_HEROIC)
+                    if(player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
                     {
                         if (isAttuned(player) && player->GetLevel() < 80)
                         {

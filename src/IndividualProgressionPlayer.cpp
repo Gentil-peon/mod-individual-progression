@@ -169,37 +169,36 @@ public:
 
     bool OnPlayerBeforeTeleport(Player* player, uint32 mapid, float x, float y, float z, float /*orientation*/, uint32 /*options*/, Unit* /*target*/) override
     {
-        if (mapid == MAP_NAXXRAMAS || mapid == MAP_ONYXIAS_LAIR)
-        {   
-            Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-            if (player->GetLevel() < IP_LEVEL_WOTLK && diff != RAID_DIFFICULTY_10MAN_HEROIC)
-            {
-                if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
-                {
-                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
-                }
-                return false;
-            }
-            if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_10MAN_HEROIC)
-            {
-                if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
-                {
-                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
-                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
-                }
-                return false;
-            }
-            if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_25MAN_HEROIC)
-            {
-                if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
-                {
-                    player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
-                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
-                }
-                return false;
-            }
-        }
+        // if (mapid == MAP_NAXXRAMAS || mapid == MAP_ONYXIAS_LAIR)
+        // {   
+        //     if (player->GetLevel() < IP_LEVEL_WOTLK && player->GetRaidDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC)
+        //     {
+        //         if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+        //         {
+        //             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+        //             player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
+        //         }
+        //         return false;
+        //     }
+        //     else if (player->GetLevel() >= IP_LEVEL_WOTLK && player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+        //     {
+        //         if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+        //         {
+        //             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+        //             player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
+        //         }
+        //         return false;
+        //     }
+        //     else if (player->GetLevel() >= IP_LEVEL_WOTLK && player->GetRaidDifficulty() == RAID_DIFFICULTY_25MAN_HEROIC)
+        //     {
+        //         if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+        //         {
+        //             player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
+        //             player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
+        //         }
+        //         return false;
+        //     }
+        // }
 
         if (!sIndividualProgression->enabled || player->IsGameMaster())
         {

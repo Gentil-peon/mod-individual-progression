@@ -39,8 +39,7 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-        if(diff == RAID_DIFFICULTY_10MAN_HEROIC)
+        if(player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) 
                 && isAttuned(player) && player->GetLevel() < 80)
