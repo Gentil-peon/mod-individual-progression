@@ -183,12 +183,12 @@ uint8 IndividualProgression::GetAccountProgression(uint32 accountId)
 
 bool IndividualProgression::isExcludedFromProgression(Player* player)
 {
-    if (!excludeAccounts)
+    if(!sIndividualProgression->excludeAccounts)
         return false;
-    
+
     std::string accountName;
     bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
-    std::regex excludedAccountsRegex(excludedAccountsRegex);
+    std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
     return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
 }
 

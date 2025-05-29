@@ -167,16 +167,16 @@ public:
         }
     }
 
-    bool isExcludedFromProgression(Player* player)
-    {
-        if(!sIndividualProgression->excludeAccounts) {
-            return false;
-        }
-        std::string accountName;
-        bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
-        std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
-        return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
-    }
+    // bool isExcludedFromProgression(Player* player)
+    // {
+    //     if(!sIndividualProgression->excludeAccounts) {
+    //         return false;
+    //     }
+    //     std::string accountName;
+    //     bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
+    //     std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
+    //     return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
+    // }
 
     bool OnPlayerBeforeTeleport(Player* player, uint32 mapid, float x, float y, float z, float /*orientation*/, uint32 /*options*/, Unit* /*target*/) override
     {
