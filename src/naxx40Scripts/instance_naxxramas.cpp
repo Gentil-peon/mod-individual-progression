@@ -1395,14 +1395,20 @@ public:
         if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            {
                 player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+                player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
+            }
             return false;
         }
         // Set as regular 25 man if player diff 25 man heroic
         if (diff == RAID_DIFFICULTY_25MAN_HEROIC)
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            {
                 player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
+                player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
+            }
             return false;
         }
 

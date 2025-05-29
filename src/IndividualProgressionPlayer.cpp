@@ -175,19 +175,28 @@ public:
             if (player->GetLevel() < IP_LEVEL_WOTLK && diff != RAID_DIFFICULTY_10MAN_HEROIC)
             {
                 if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                {
                     player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
+                }
                 return false;
             }
             if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_10MAN_HEROIC)
             {
                 if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                {
                     player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_NORMAL);
+                }
                 return false;
             }
             if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_25MAN_HEROIC)
             {
                 if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                {
                     player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
+                    player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_NORMAL);
+                }
                 return false;
             }
         }

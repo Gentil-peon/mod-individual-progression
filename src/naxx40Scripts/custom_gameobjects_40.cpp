@@ -54,7 +54,10 @@ public:
         else
         {
             if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            {
                 player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
+            }
             return false;
         }
     }
