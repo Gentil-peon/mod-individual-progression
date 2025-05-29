@@ -1351,7 +1351,7 @@ public:
             return false;
 
         if ((player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC && sIndividualProgression->naxxSkipToSaphiron) 
-        || (player->GetMap()->GetSpawnMode() != RAID_DIFFICULTY_10MAN_HEROIC && hasPassedProgression(player, PROGRESSION_WOTLK_TIER_1)))
+        || (player->GetMap()->GetSpawnMode() != RAID_DIFFICULTY_10MAN_HEROIC && sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_1)))
         {
             player->TeleportTo(533, sapphironEntryTP.m_positionX, sapphironEntryTP.m_positionY, sapphironEntryTP.m_positionZ, sapphironEntryTP.m_orientation);
             return true;
