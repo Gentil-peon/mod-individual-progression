@@ -181,6 +181,17 @@ uint8 IndividualProgression::GetAccountProgression(uint32 accountId)
     return progressionLevel;
 }
 
+bool IndividualProgression::isExcludedFromProgression(Player* player)
+{
+    if (!excludeAccounts)
+        return false;
+    
+    std::string accountName;
+    bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
+    std::regex excludedAccountsRegex(excludedAccountsRegex);
+    return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
+}
+
 void IndividualProgression::LoadCustomProgressionEntries(std::string const& customProgressionString)
 {
     std::string delimitedValue;

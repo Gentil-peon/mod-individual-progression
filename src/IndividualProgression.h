@@ -230,6 +230,7 @@ public:
     static void AdjustStats(Player* player, float computedAdjustment, float computedHealingAdjustment);
     static float ComputeVanillaAdjustment(uint8 playerLevel, float configAdjustmentValue);
     static uint8 GetAccountProgression(uint32 accountId);
+    bool isExcludedFromProgression(Player* player);
 };
 
 #define sIndividualProgression IndividualProgression::instance()
