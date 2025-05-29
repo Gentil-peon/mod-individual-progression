@@ -38,6 +38,17 @@ public:
         return new instance_onyxias_lair_InstanceMapScript(pMap);
     }
 
+    bool isExcludedFromProgression(Player* player)
+    {
+        if(!sIndividualProgression->excludeAccounts)
+            return false;
+
+        std::string accountName;
+        bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
+        std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
+        return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
+    }
+
     struct instance_onyxias_lair_InstanceMapScript : public InstanceScript
     {
         instance_onyxias_lair_InstanceMapScript(Map* pMap) : InstanceScript(pMap) {Initialize();};
@@ -142,7 +153,7 @@ public:
         if (player->GetLevel() < 80 || diff == RAID_DIFFICULTY_25MAN_HEROIC)
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
 
-        if (!sMapMgr->PlayerCannotEnter(249, player, true) || sIndividualProgression->isExcludedFromProgression(player))
+        if (!sMapMgr->PlayerCannotEnter(249, player, true) || isExcludedFromProgression(player))
             player->TeleportTo(249, 29.1607f, -71.3372f, -8.18032f, 4.58f);
 
         return true;

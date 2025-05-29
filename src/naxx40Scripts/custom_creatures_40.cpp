@@ -11,7 +11,7 @@ class npc_naxx40_area_trigger : public CreatureScript
 private:
     static bool isAttuned(Player* player)
     {
-        if (player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
+        if (player->IsGameMaster() || isExcludedFromProgression(player))
             return true;
 
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
@@ -28,6 +28,17 @@ private:
 
 public:
     npc_naxx40_area_trigger() : CreatureScript("npc_naxx40_area_trigger") {}
+
+    bool isExcludedFromProgression(Player* player)
+    {
+        if(!sIndividualProgression->excludeAccounts)
+            return false;
+
+        std::string accountName;
+        bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
+        std::regex excludedAccountsRegex (sIndividualProgression->excludedAccountsRegex);
+        return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
+    }
 
     struct npc_naxx40_area_triggerAI: public ScriptedAI
     {
