@@ -147,8 +147,8 @@ enum ProgressionState : uint8
     PROGRESSION_START           = 0,
     PROGRESSION_MOLTEN_CORE     = 1,
     PROGRESSION_ONYXIA          = 2,
-    PROGRESSION_BLACKWING_LAIR  = 3,
-    PROGRESSION_PRE_AQ          = 4,
+    PROGRESSION_BLACKWING_LAIR  = 3, // AQ War effort + Gong quest line
+    PROGRESSION_PRE_AQ          = 4, // AQ outdoors war + AQ gates open, raid available
     PROGRESSION_AQ              = 5,
     PROGRESSION_NAXX40          = 6,
     PROGRESSION_TBC_TIER_1      = 7,  // Karazhan, Gruul's Lair, Magtheridon's Lair
