@@ -135,17 +135,36 @@ public:
     onyxia_entrance_trigger() : AreaTriggerScript("onyxia_entrance_trigger") { }
 
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
-    {
+    {   
         Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
-        // Set as 10 man heroic if player not level 80
-        // Set as 10 man heroic if player diff 25 man heroic
-        if (player->GetLevel() < 80 || diff == RAID_DIFFICULTY_25MAN_HEROIC)
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+        if (player->GetLevel() < 80 && diff != RAID_DIFFICULTY_10MAN_HEROIC)
+        {
+            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC)
+            return false;
+        }
+
+        if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_10MAN_HEROIC)
+        {
+            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL)
+            return false;
+        }
+
+        if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_25MAN_HEROIC)
+        {
+            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL)
+            return false;
+        }
 
         if (!sMapMgr->PlayerCannotEnter(249, player, true) || sIndividualProgression->isExcludedFromProgression(player))
+        {
             player->TeleportTo(249, 29.1607f, -71.3372f, -8.18032f, 4.58f);
+            return true;
+        }
 
-        return true;
+        return false;
     }
 };
 

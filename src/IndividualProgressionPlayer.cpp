@@ -169,10 +169,39 @@ public:
 
     bool OnPlayerBeforeTeleport(Player* player, uint32 mapid, float x, float y, float z, float /*orientation*/, uint32 /*options*/, Unit* /*target*/) override
     {
-        if (!sIndividualProgression->enabled || player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
+        if (mapid == MAP_NAXXRAMAS || mapid == MAP_ONYXIAS_LAIR)
+        {   
+            Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
+            if (player->GetLevel() < IP_LEVEL_WOTLK && diff != RAID_DIFFICULTY_10MAN_HEROIC)
+            {
+                If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                return false;
+            }
+            if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_10MAN_HEROIC)
+            {
+                If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+                return false;
+            }
+            if (player->GetLevel() >= IP_LEVEL_WOTLK && diff == RAID_DIFFICULTY_25MAN_HEROIC)
+            {
+                If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
+                return false;
+            }
+        }
+
+        if (!sIndividualProgression->enabled || player->IsGameMaster())
         {
             return true;
         }
+
+        if (sIndividualProgression->isExcludedFromProgression(player))
+        {
+            return true;
+        }
+
         if (mapid == MAP_BLACKWING_LAIR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_MOLTEN_CORE))
         {
             return false;

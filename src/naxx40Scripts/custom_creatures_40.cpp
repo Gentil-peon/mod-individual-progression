@@ -41,12 +41,18 @@ public:
             if (who && me->GetDistance2d(who) < 5.0f)
             {
                 if (Player* player = who->ToPlayer())
-                {
-                    // Change 10, 25 and 25 man heroic to 10 man heroic
-                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-
-                    if (isAttuned(player))
-                        player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                {   
+                    Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
+                    if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
+                    {
+                        if (isAttuned(player) && player->GetLevel() < 80)
+                            player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                    }
+                    else
+                    {
+                        If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC)
+                    }
                 }
 
             }
@@ -54,13 +60,20 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if (isAttuned(player))
+                    Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
+                    if(diff == RAID_DIFFICULTY_10MAN_HEROIC)
                     {
-                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
-                        if (door)
+                        if (isAttuned(player) && player->GetLevel() < 80)
                         {
-                            door->SetGoState(GO_STATE_ACTIVE);
+                            GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
+                            if (door)
+                                door->SetGoState(GO_STATE_ACTIVE);
                         }
+                    }
+                    else
+                    {
+                        If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC)
                     }
                 }
             }

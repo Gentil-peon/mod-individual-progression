@@ -39,14 +39,24 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        // Do not allow entrance to Naxx WotLK from Eastern Plaguelands
-        // Change 10, 25 and 25 man heroic to 10 man heroic
-        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-        
-        if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
-            player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
-
-        return true;
+        Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
+        if(diff == RAID_DIFFICULTY_10MAN_HEROIC)
+        {
+            if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) 
+                && isAttuned(player) && player->GetLevel() < 80)
+            {
+                player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC)
+            return false;
+        }
     }
 };
 
