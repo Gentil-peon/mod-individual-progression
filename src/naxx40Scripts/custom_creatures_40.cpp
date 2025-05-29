@@ -44,13 +44,25 @@ public:
                 {   
                     if (player->GetRaidDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
                     {
-                        if (isAttuned(player) && player->GetLevel() < 80)
-                            player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                        player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+
+                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                        player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
+ 
+                        if (isAttuned(player) 
+                            && player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
+                            {
+                                player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
+                            }
                     }
                     else
                     {
-                        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+                        if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->GetLeader()->GetLevel() < 80)
                         {
+                            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+
                             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                             player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
                         }
@@ -75,6 +87,9 @@ public:
                     {
                         if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                         {
+                            player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+                            player->SendRaidDifficulty(true, RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
+
                             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                             player->SendRaidDifficulty(true, RAID_DIFFICULTY_10MAN_HEROIC);
                         }
