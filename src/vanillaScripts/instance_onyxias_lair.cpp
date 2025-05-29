@@ -139,21 +139,21 @@ public:
         Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
         if (player->GetLevel() < 80 && diff != RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                 player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC)
             return false;
         }
 
         if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                 player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL)
             return false;
         }
 
         if (player->GetLevel() >= 80 && diff == RAID_DIFFICULTY_25MAN_HEROIC)
         {
-            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                 player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL)
             return false;
         }

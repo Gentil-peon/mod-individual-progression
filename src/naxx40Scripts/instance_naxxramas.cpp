@@ -1394,14 +1394,14 @@ public:
         Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
         if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                 player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
             return false;
         }
         // Set as regular 25 man if player diff 25 man heroic
         if (diff == RAID_DIFFICULTY_25MAN_HEROIC)
         {
-            If(player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
+            if (player->GetGroup() && player->GetGroup()->isRaidGroup() && player->GetGroup()->IsLeader(player->GetGUID()))
                 player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_NORMAL);
             return false;
         }
