@@ -1,3 +1,4 @@
+#include "IndividualProgression.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
@@ -5,14 +6,13 @@
 #include "GameObjectAI.h"
 #include "Player.h"
 #include "naxxramas.h"
-#include "IndividualProgression.h"
 
 class gobject_naxx40_tele : public GameObjectScript
 {
 private:
     static bool isAttuned(Player* player)
     {
-        if (player->IsGameMaster() || isExcludedFromProgression(player))
+        if (player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
             return true;
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
             return true;

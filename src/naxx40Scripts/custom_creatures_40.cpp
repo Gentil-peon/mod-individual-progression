@@ -1,3 +1,4 @@
+#include "IndividualProgression.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
@@ -10,7 +11,7 @@ class npc_naxx40_area_trigger : public CreatureScript
 private:
     static bool isAttuned(Player* player)
     {
-        if (player->IsGameMaster() || isExcludedFromProgression(player))
+        if (player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
             return true;
 
         if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
