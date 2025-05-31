@@ -959,9 +959,10 @@ public:
     void OnUnitEnterCombat(Unit* unit, Unit* victim) override
     {
         if (!sIndividualProgression->enabled)
-        {
             return;
-        }
+
+        if(!sIndividualProgression->dynamicPhasingEventMobs)
+            return;
 
         switch (unit->GetEntry())
         {
@@ -1023,9 +1024,10 @@ public:
     void OnUnitEnterEvadeMode(Unit* unit, uint8 why) override
     {
         if (!sIndividualProgression->enabled)
-        {
             return;
-        }
+
+        if(!sIndividualProgression->dynamicPhasingEventMobs)
+            return;
 
         switch (unit->GetEntry())
         {
@@ -1061,9 +1063,10 @@ public:
     void OnUnitDeath(Unit* unit, Unit* killer) override
     {
         if (!sIndividualProgression->enabled)
-        {
             return;
-        }
+
+        if(!sIndividualProgression->dynamicPhasingEventMobs)
+            return;
 
         switch (unit->GetEntry())
         {
