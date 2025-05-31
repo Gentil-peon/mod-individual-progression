@@ -512,6 +512,24 @@ public:
         }
     }
 
+    void OnPlayerEnterCombat(Player* player, Unit* enemy) override
+    {
+        if (!sIndividualProgression->enabled)
+        {
+            return;
+        }
+
+        switch (enemy->GetEntry())
+        {
+            case 28194: // Tenris (WotLK Scourge Invasion event)
+            case 16423: // Spectral Apparition (Scourge Invasion event)
+            case 16437: // Spectral Spirit (Scourge Invasion event)
+            case 16438: // Skeletal Trooper (Scourge Invasion event)
+                enemy->UpdateObjectVisibility(true, false);
+                break;
+        }
+    }
+
     void OnPlayerQueueRandomDungeon(Player* player, uint32& rDungeonId) override
     {
         // List of exceptions for seasonal event dungeons

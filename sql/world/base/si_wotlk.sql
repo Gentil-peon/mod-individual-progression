@@ -23,12 +23,13 @@ DELETE FROM `smart_scripts` WHERE (`source_type` = 1 AND `entryorguid` = 190610)
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 (190610, 1, 0, 0, 70, 0, 100, 0, 2, 0, 0, 0, 0, 0, 70, 120, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '');
 
-DELETE FROM `gameobject` WHERE `id` = 190610; -- Orders from the Lich King
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `VerifiedBuild`, `ScriptName`) 
-VALUES (660610, 190610, 532, 0, 0, 1, 1, -11083.367, -1972.86, 77.576, 3.11328, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si');
-/* To-do: Add blood tankers */
-/* To-do: Add blood tankers */
-/* To-do: Add blood tankers */
+DELETE FROM `gameobject` WHERE `map` = 532 AND `id` IN (190604, 190609, 190610);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `VerifiedBuild`, `ScriptName`) VALUES 
+(660610, 190610, 532, 0, 0, 1, 1, -11083.367, -1972.86, 77.576, 3.11328, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si'),
+(660609, 190609, 532, 0, 0, 1, 1, -11082.5, -1973.44, 77.5755, 1.36805, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si'),
+(660604, 190604, 532, 0, 0, 1, 1, -11085.7, -1981.78, 76.1737, 2.91534, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si'),
+(660605, 190604, 532, 0, 0, 1, 1, -11087.4, -1996.69, 76.1779, 1.81579, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si'),
+(660606, 190604, 532, 0, 0, 1, 1, -11100.9, -1978.69, 76.1755	, 1.32579, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si');
 
 /* Make trinket works: Monster Slayer's Kit (40354) */
 /* spell_item_monster_slayer_s_kit is not implemented in AzerothCore at the moment, we are replacing it */
