@@ -768,7 +768,7 @@ private:
 
     static void AdjustVanillaStats(Pet* pet)
     {
-        float adjustmentValue = -100.0f * (1.0f - sIndividualProgression->vanillaPowerAdjustment);
+        float adjustmentValue = -100.0f * (1.0f - 0.5);//sIndividualProgression->vanillaPowerAdjustment);
         float adjustmentApplyPercent = (pet->GetLevel() - 10.0f) / 50.0f;
         float computedAdjustment = pet->GetLevel() > 10 ? (adjustmentValue * adjustmentApplyPercent) : 0;
         float hpAdjustmentValue = -100.0f * (1.0f - sIndividualProgression->vanillaHealthAdjustment);
