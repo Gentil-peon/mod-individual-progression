@@ -308,7 +308,6 @@ public:
     void OnPlayerCreatureKill(Player* killer, Creature* killed) override
     {
         sIndividualProgression->checkKillProgression(killer, killed);
-        sIndividualProgression->checkSiQuestProgression(killer, killed);
         Group* group = killer->GetGroup();
         if (!group)
         {
@@ -323,7 +322,6 @@ public:
             if (killer->IsAtLootRewardDistance(member))
             {
                 sIndividualProgression->checkKillProgression(member, killed);
-                sIndividualProgression->checkSiQuestProgression(killer, killed);
             }
         }
     }

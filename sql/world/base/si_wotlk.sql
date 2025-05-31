@@ -4,6 +4,25 @@
 UPDATE `creature` SET `phaseMask` = 65536 WHERE `id1` = 28194; -- Prince Tenris Mirkblood, @IPPPHASE 65536
 
 /* Gobject for Tenris Mirkblood room in Karazhan */
+
+/* Setup quest items */
+UPDATE `quest_template` SET `AreaDescription` = 'Search the chamber of Tenris Mirkblood.' WHERE `ID` = 12616;
+DELETE FROM `gameobject_template` WHERE (`entry` = 190610);
+INSERT INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `Data6`, `Data7`, `Data8`, `Data9`, `Data10`, `Data11`, `Data12`, `Data13`, `Data14`, `Data15`, `Data16`, `Data17`, `Data18`, `Data19`, `Data20`, `Data21`, `Data22`, `Data23`, `AIName`, `ScriptName`, `VerifiedBuild`) VALUES
+(190610, 3, 220, 'Orders from the Lich King', '', 'Reading orders', '', 1, 43, 660610, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartGameObjectAI', '', 49345);
+DELETE FROM `gameobject_template_addon` WHERE (`entry` = 190610);
+INSERT INTO `gameobject_template_addon` (`entry`, `faction`, `flags`, `mingold`, `maxgold`, `artkit0`, `artkit1`, `artkit2`, `artkit3`) VALUES
+(190610, 0, 4, 0, 0, 0, 0, 0, 0);
+DELETE FROM `gameobject_questitem` WHERE (`GameObjectEntry` = 190610) AND (`Idx` IN (0));
+INSERT INTO `gameobject_questitem` (`GameObjectEntry`, `Idx`, `ItemId`, `VerifiedBuild`) VALUES
+(190610, 0, 38629, 0);
+DELETE FROM `gameobject_loot_template` WHERE (`Entry` = 660610);
+INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+(660610, 38629, 0, 100, 1, 1, 0, 1, 1, '');
+DELETE FROM `smart_scripts` WHERE (`source_type` = 1 AND `entryorguid` = 190610);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+(190610, 1, 0, 0, 70, 0, 100, 0, 2, 0, 0, 0, 0, 0, 70, 120, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '');
+
 DELETE FROM `gameobject` WHERE `id` = 190610; -- Orders from the Lich King
 INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `VerifiedBuild`, `ScriptName`) 
 VALUES (660610, 190610, 532, 0, 0, 1, 1, -11083.367, -1972.86, 77.576, 3.11328, 0, 0, 0, 0, 120, 100, 1, 0, 'gobject_ipp_si');

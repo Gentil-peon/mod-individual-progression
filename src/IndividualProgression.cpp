@@ -296,53 +296,6 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
         }
 }
 
-void IndividualProgression::checkSiQuestProgression(Player* killer, Creature* killed)
-{
-        if (!enabled)
-        {
-            return;
-        }
-
-        switch (killed->GetEntry())
-        {
-            case 16423: // NPC: Spectral Apparition (Scourge Invasion event)
-            case 16437: // NPC: Spectral Spirit (Scourge Invasion event)
-            case 16438: // NPC: Skeletal Trooper (Scourge Invasion event)
-                killer->AddItem(22892, 1); // Item: Dim Necrotic Stone (Scourge Invasion event)
-                
-                if (killer->IsActiveQuest(9260))
-                    killer->CompleteQuest(9260); // Quest: Investigate the Scourge of Stormwind (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(9261))
-                    killer->CompleteQuest(9261); // Quest: Investigate the Scourge of Ironforge (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(9262))
-                    killer->CompleteQuest(9262); // Quest: Investigate the Scourge of Darnassus (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(9263))
-                    killer->CompleteQuest(9263); // Quest: Investigate the Scourge of Orgrimmar (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(9264))
-                    killer->CompleteQuest(9264); // Quest: Investigate the Scourge of Thunder Bluff (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(9265))
-                    killer->CompleteQuest(9265); // Quest: Investigate the Scourge of the Undercity (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(12816))
-                    killer->CompleteQuest(12816); // Quest: Investigate the Scourge of Silvermoon (Scourge Invasion event)
-
-                if (killer->IsActiveQuest(12817))
-                    killer->CompleteQuest(12817); // Quest: Investigate the Scourge of Exodar (Scourge Invasion event)
-
-                break;
-            case 28194: // NPC: Prince Tenris Mirkblood (Scourge Invasion WotLK event)
-                if (killer->IsActiveQuest(12616))
-                    killer->CompleteQuest(12616); // Quest: Chamber of Secrets (Scourge Invasion WotLK event)
-
-                break;
-        }
-}
-
 class IndividualPlayerProgression_WorldScript : public WorldScript
 {
 private:
