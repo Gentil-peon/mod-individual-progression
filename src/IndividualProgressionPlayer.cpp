@@ -512,7 +512,7 @@ public:
         }
     }
 
-    void OnUnitEnterEvadeMode(Unit* unit, uint8 why);
+    void OnUnitEnterEvadeMode(Unit* unit, uint8 why) override
     {
         if (!sIndividualProgression->enabled)
         {
@@ -549,7 +549,7 @@ public:
         }
     }
 
-    void OnUnitDeath(Unit* unit, Unit* killer);
+    void OnUnitDeath(Unit* unit, Unit* killer) override
     {
         if (!sIndividualProgression->enabled)
         {
