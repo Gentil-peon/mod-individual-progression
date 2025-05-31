@@ -512,42 +512,6 @@ public:
         }
     }
 
-
-    void OnPlayerEnterCombat(Player* player, Unit* enemy) override
-    {
-        if (!sIndividualProgression->enabled)
-        {
-            return;
-        }
-
-        switch (enemy->GetEntry())
-        {
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                enemy->SetPhaseMask(1, false);
-                enemy->UpdateObjectVisibility(true);
-                player->UpdateObjectVisibility(true);
-                break;
-        }
-    }
-
     void OnPlayerQueueRandomDungeon(Player* player, uint32& rDungeonId) override
     {
         // List of exceptions for seasonal event dungeons
@@ -992,6 +956,70 @@ public:
         }
     }
 
+    void OnUnitEnterCombat(Unit* unit, Unit* victim) override
+    {
+        if (!sIndividualProgression->enabled)
+        {
+            return;
+        }
+
+        switch (unit->GetEntry())
+        {
+            case 14697: // Lumbering Horror (Scourge Invasion event)
+            case 15740: // Colossus of Zora (AQ war)
+            case 15741: // Colossus of Regal (AQ war)
+            case 15742: // Colossus of Ashi (AQ war)
+            case 15758: // Supreme Anubisath Warbringer (AQ war)
+            case 15810: // Eroded Anubisath Warbringer (AQ war)
+            case 15813: // Qiraji Officer Zod (AQ war)
+            case 15818: // Lieutenant General Nokhor (AQ war)
+            case 16141: // Ghoul Berserker (Scourge Invasion event)
+            case 16143: // Shadow of Doom (Scourge Invasion event)
+            case 16230: // Cultist Engineer (Scourge Invasion event)
+            case 16298: // Spectral Soldier (Scourge Invasion event)
+            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
+            case 16379: // Spirit of the Damned (Scourge Invasion event)
+            case 16380: // Bone Witch (Scourge Invasion event)
+            case 16422: // Skeletal Soldier (Scourge Invasion event)
+            case 16423: // Spectral Apparition (Scourge Invasion event)
+            case 16437: // Spectral Spirit (Scourge Invasion event)
+            case 16438: // Skeletal Trooper (Scourge Invasion event)
+            case 28194: // Tenris (WotLK Scourge Invasion event)
+                unit->SetPhaseMask(1, false);
+                unit->UpdateObjectVisibility(true);
+                victim->UpdateObjectVisibility(true);
+                break;
+        }
+
+        switch (victim->GetEntry())
+        {
+            case 14697: // Lumbering Horror (Scourge Invasion event)
+            case 15740: // Colossus of Zora (AQ war)
+            case 15741: // Colossus of Regal (AQ war)
+            case 15742: // Colossus of Ashi (AQ war)
+            case 15758: // Supreme Anubisath Warbringer (AQ war)
+            case 15810: // Eroded Anubisath Warbringer (AQ war)
+            case 15813: // Qiraji Officer Zod (AQ war)
+            case 15818: // Lieutenant General Nokhor (AQ war)
+            case 16141: // Ghoul Berserker (Scourge Invasion event)
+            case 16143: // Shadow of Doom (Scourge Invasion event)
+            case 16230: // Cultist Engineer (Scourge Invasion event)
+            case 16298: // Spectral Soldier (Scourge Invasion event)
+            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
+            case 16379: // Spirit of the Damned (Scourge Invasion event)
+            case 16380: // Bone Witch (Scourge Invasion event)
+            case 16422: // Skeletal Soldier (Scourge Invasion event)
+            case 16423: // Spectral Apparition (Scourge Invasion event)
+            case 16437: // Spectral Spirit (Scourge Invasion event)
+            case 16438: // Skeletal Trooper (Scourge Invasion event)
+            case 28194: // Tenris (WotLK Scourge Invasion event)
+                victim->SetPhaseMask(1, false);
+                victim->UpdateObjectVisibility(true);
+                unit->UpdateObjectVisibility(true);
+                break;
+        }
+    }
+
     void OnUnitEnterEvadeMode(Unit* unit, uint8 why) override
     {
         if (!sIndividualProgression->enabled)
@@ -1013,6 +1041,7 @@ public:
                 break;
             case 14697: // Lumbering Horror (Scourge Invasion event)
             case 16141: // Ghoul Berserker (Scourge Invasion event)
+            case 16143: // Shadow of Doom (Scourge Invasion event)
             case 16230: // Cultist Engineer (Scourge Invasion event)
             case 16298: // Spectral Soldier (Scourge Invasion event)
             case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
@@ -1051,6 +1080,7 @@ public:
                 break;
             case 14697: // Lumbering Horror (Scourge Invasion event)
             case 16141: // Ghoul Berserker (Scourge Invasion event)
+            case 16143: // Shadow of Doom (Scourge Invasion event)
             case 16230: // Cultist Engineer (Scourge Invasion event)
             case 16298: // Spectral Soldier (Scourge Invasion event)
             case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
@@ -1064,6 +1094,38 @@ public:
                 unit->SetPhaseMask(65536, false);
                 unit->UpdateObjectVisibility(true);
                 killer->UpdateObjectVisibility(true);
+                break;
+        }
+
+        switch (killer->GetEntry())
+        {
+            case 15740: // Colossus of Zora (AQ war)
+            case 15741: // Colossus of Regal (AQ war)
+            case 15742: // Colossus of Ashi (AQ war)
+            case 15758: // Supreme Anubisath Warbringer (AQ war)
+            case 15810: // Eroded Anubisath Warbringer (AQ war)
+            case 15813: // Qiraji Officer Zod (AQ war)
+            case 15818: // Lieutenant General Nokhor (AQ war)
+                killer->SetPhaseMask(131072, false);
+                killer->UpdateObjectVisibility(true);
+                unit->UpdateObjectVisibility(true);
+                break;
+            case 14697: // Lumbering Horror (Scourge Invasion event)
+            case 16141: // Ghoul Berserker (Scourge Invasion event)
+            case 16143: // Shadow of Doom (Scourge Invasion event)
+            case 16230: // Cultist Engineer (Scourge Invasion event)
+            case 16298: // Spectral Soldier (Scourge Invasion event)
+            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
+            case 16379: // Spirit of the Damned (Scourge Invasion event)
+            case 16380: // Bone Witch (Scourge Invasion event)
+            case 16422: // Skeletal Soldier (Scourge Invasion event)
+            case 16423: // Spectral Apparition (Scourge Invasion event)
+            case 16437: // Spectral Spirit (Scourge Invasion event)
+            case 16438: // Skeletal Trooper (Scourge Invasion event)
+            case 28194: // Tenris (WotLK Scourge Invasion event)
+                killer->SetPhaseMask(65536, false);
+                killer->UpdateObjectVisibility(true);
+                unit->UpdateObjectVisibility(true);
                 break;
         }
     }
