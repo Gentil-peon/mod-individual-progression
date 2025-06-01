@@ -237,6 +237,8 @@ public:
     static float ComputeVanillaAdjustment(uint8 playerLevel, float configAdjustmentValue);
     static uint8 GetAccountProgression(uint32 accountId);
     bool isExcludedFromProgression(Player* player);
+    bool isMonsterFromScourgeEvent(Unit* unit);
+    bool isMonsterFromAqEvent(Unit* unit);
 };
 
 #define sIndividualProgression IndividualProgression::instance()

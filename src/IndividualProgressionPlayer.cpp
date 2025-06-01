@@ -702,6 +702,23 @@ public:
         }
         return true;
     }
+
+    void OnPlayerEnterCombat(Player* player, Unit* enemy) override
+    {
+        if (!sIndividualProgression->enabled)
+            return;
+
+        if(!sIndividualProgression->dynamicPhasingEventMobs)
+            return;
+
+        if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
+            || sIndividualProgression->isMonsterFromScourgeEvent(enemy))
+        {
+            enemy->SetPhaseMask(1, false);
+            enemy->UpdateObjectVisibility(true);
+            player->UpdateObjectVisibility(true);
+        }
+    }
 };
 
 class IndividualPlayerProgression_AccountScript: public AccountScript
@@ -964,60 +981,20 @@ public:
         if(!sIndividualProgression->dynamicPhasingEventMobs)
             return;
 
-        switch (unit->GetEntry())
+        if (sIndividualProgression->isMonsterFromAqEvent(unit) 
+            || sIndividualProgression->isMonsterFromScourgeEvent(unit))
         {
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16143: // Shadow of Doom (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                unit->SetPhaseMask(1, false);
-                unit->UpdateObjectVisibility(true);
-                victim->UpdateObjectVisibility(true);
-                break;
+            unit->SetPhaseMask(1, false);
+            unit->UpdateObjectVisibility(true);
+            victim->UpdateObjectVisibility(true);
         }
 
-        switch (victim->GetEntry())
+        if (sIndividualProgression->isMonsterFromAqEvent(victim) 
+            || sIndividualProgression->isMonsterFromScourgeEvent(victim))
         {
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16143: // Shadow of Doom (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                victim->SetPhaseMask(1, false);
-                victim->UpdateObjectVisibility(true);
-                unit->UpdateObjectVisibility(true);
-                break;
+            victim->SetPhaseMask(1, false);
+            victim->UpdateObjectVisibility(true);
+            unit->UpdateObjectVisibility(true);
         }
     }
 
@@ -1029,34 +1006,16 @@ public:
         if(!sIndividualProgression->dynamicPhasingEventMobs)
             return;
 
-        switch (unit->GetEntry())
+        if (sIndividualProgression->isMonsterFromAqEvent(unit))
         {
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-                unit->SetPhaseMask(131072, false);
-                unit->UpdateObjectVisibility(true);
-                break;
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16143: // Shadow of Doom (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                unit->SetPhaseMask(65536, false);
-                unit->UpdateObjectVisibility(true);
-                break;
+            unit->SetPhaseMask(131072, false);
+            unit->UpdateObjectVisibility(true);
+        }
+
+        if (sIndividualProgression->isMonsterFromScourgeEvent(unit))
+        {
+            unit->SetPhaseMask(65536, false);
+            unit->UpdateObjectVisibility(true);
         }
     }
 
@@ -1068,68 +1027,32 @@ public:
         if(!sIndividualProgression->dynamicPhasingEventMobs)
             return;
 
-        switch (unit->GetEntry())
+        if (sIndividualProgression->isMonsterFromAqEvent(unit))
         {
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-                unit->SetPhaseMask(131072, false);
-                unit->UpdateObjectVisibility(true);
-                killer->UpdateObjectVisibility(true);
-                break;
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16143: // Shadow of Doom (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                unit->SetPhaseMask(65536, false);
-                unit->UpdateObjectVisibility(true);
-                killer->UpdateObjectVisibility(true);
-                break;
+            unit->SetPhaseMask(131072, false);
+            unit->UpdateObjectVisibility(true);
+            killer->UpdateObjectVisibility(true);
         }
 
-        switch (killer->GetEntry())
+        if (sIndividualProgression->isMonsterFromScourgeEvent(unit))
         {
-            case 15740: // Colossus of Zora (AQ war)
-            case 15741: // Colossus of Regal (AQ war)
-            case 15742: // Colossus of Ashi (AQ war)
-            case 15758: // Supreme Anubisath Warbringer (AQ war)
-            case 15810: // Eroded Anubisath Warbringer (AQ war)
-            case 15813: // Qiraji Officer Zod (AQ war)
-            case 15818: // Lieutenant General Nokhor (AQ war)
-                killer->SetPhaseMask(131072, false);
-                killer->UpdateObjectVisibility(true);
-                unit->UpdateObjectVisibility(true);
-                break;
-            case 14697: // Lumbering Horror (Scourge Invasion event)
-            case 16141: // Ghoul Berserker (Scourge Invasion event)
-            case 16143: // Shadow of Doom (Scourge Invasion event)
-            case 16230: // Cultist Engineer (Scourge Invasion event)
-            case 16298: // Spectral Soldier (Scourge Invasion event)
-            case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-            case 16379: // Spirit of the Damned (Scourge Invasion event)
-            case 16380: // Bone Witch (Scourge Invasion event)
-            case 16422: // Skeletal Soldier (Scourge Invasion event)
-            case 16423: // Spectral Apparition (Scourge Invasion event)
-            case 16437: // Spectral Spirit (Scourge Invasion event)
-            case 16438: // Skeletal Trooper (Scourge Invasion event)
-            case 28194: // Tenris (WotLK Scourge Invasion event)
-                killer->SetPhaseMask(65536, false);
-                killer->UpdateObjectVisibility(true);
-                unit->UpdateObjectVisibility(true);
-                break;
+            unit->SetPhaseMask(65536, false);
+            unit->UpdateObjectVisibility(true);
+            killer->UpdateObjectVisibility(true);
+        }
+
+        if (sIndividualProgression->isMonsterFromAqEvent(killer))
+        {
+            killer->SetPhaseMask(131072, false);
+            killer->UpdateObjectVisibility(true);
+            unit->UpdateObjectVisibility(true);
+        }
+
+        if (sIndividualProgression->isMonsterFromScourgeEvent(killer))
+        {
+            killer->SetPhaseMask(65536, false);
+            killer->UpdateObjectVisibility(true);
+            unit->UpdateObjectVisibility(true);
         }
     }
 };
