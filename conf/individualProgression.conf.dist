@@ -111,6 +111,14 @@ IndividualProgression.PreviousGearTuning = 0.01
 #
 IndividualProgression.HunterPetLevelFix = 1
 
+# IndividualProgression.MoltenCoreOnySamePhase
+#        Description: Molten Core and Onyxia are 2 separate phase in the module.
+#                     Enable this option to allow the player to proceed to the BWL phase by killing Onyxia or Ragnaros, as desired.
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+IndividualProgression.MoltenCoreOnySamePhase = 0
+
 # IndividualProgression.RequirePreAQQuests
 #        Description: AQ is the only vanilla tier that does not require attunement, because of the "server-wide attunement" quest line.
 #                     Enable this option to require players to complete the 'Bang a Gong' quest line to enter AQ + Optional War Effort

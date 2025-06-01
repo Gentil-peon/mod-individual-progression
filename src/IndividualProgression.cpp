@@ -238,7 +238,10 @@ void IndividualProgression::checkKillProgression(Player* killer, Creature* kille
         switch (killed->GetEntry())
         {
             case RAGNAROS:
-                UpdateProgressionState(killer, PROGRESSION_MOLTEN_CORE);
+                if (moltenCoreOnySamePhase)
+                    UpdateProgressionState(killer, PROGRESSION_ONYXIA);
+                else
+                    UpdateProgressionState(killer, PROGRESSION_MOLTEN_CORE);
                 break;
             case ONYXIA:
                 UpdateProgressionState(killer, PROGRESSION_ONYXIA);
@@ -311,6 +314,7 @@ private:
         sIndividualProgression->tbcHealthAdjustment = sConfigMgr->GetOption<float>("IndividualProgression.TBCHealthAdjustment", 1);
         sIndividualProgression->questXpFix = sConfigMgr->GetOption<bool>("IndividualProgression.QuestXPFix", true);
         sIndividualProgression->hunterPetLevelFix = sConfigMgr->GetOption<bool>("IndividualProgression.HunterPetLevelFix", true);
+        sIndividualProgression->moltenCoreOnySamePhase = sConfigMgr->GetOption<bool>("IndividualProgression.MoltenCoreOnySamePhase", false);
         sIndividualProgression->requirePreAQQuests = sConfigMgr->GetOption<bool>("IndividualProgression.RequirePreAQQuests", true);
         sIndividualProgression->requireNaxxStrath = sConfigMgr->GetOption<bool>("IndividualProgression.RequireNaxxStrathEntrance", true);
         sIndividualProgression->naxxExitViaPortals = sConfigMgr->GetOption<bool>("IndividualProgression.NaxxExitViaPortals", false);
