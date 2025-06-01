@@ -30,6 +30,7 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 17094, -- Nemeth Hawkeye, Grom'gol Base Camp
 17095, -- Balandar Brightstar, Brackenwall Village
 17097, -- Advisor Sarophas, Kargath
+17098, -- Ambassador Dawnsinger, Orgrimmar
 17099, -- Mehlar Dawnblade, The Bulwark
 17103, -- Emissary Taluun, Stormwind
 17104, -- Anchorite Delan, Darkshire
@@ -40,6 +41,7 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 17223, -- Ambassador Rualeth, Aerie Peak
 17238, -- Anchorite Truuen, Western Plaguelands
 22931, -- Gorrim, Emerald Sanctuary, Flight Master
+23131, -- Blood Knight Honor Guard, Orgrimmar
 24366, -- Nizzle, Rebel Camp, Flight Master
 24924, -- Sky-Captain Bomblast, Zep
 24926, -- Chief Officer Brassbolt, Zep
@@ -73,6 +75,7 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (
 26537, -- Greeb Ramrocket, Zep
 26539, -- Meefi Farthrottle, Zep
+29346, -- Apothecary Karlov, Orgrimmar
 31704, -- Crewman Spinwheel, Zep
 31705, -- Crewman Coilspan, Zep
 31706, -- Crewman Stembolt, Zep
