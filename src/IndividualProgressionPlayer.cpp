@@ -13,21 +13,51 @@ private:
                 zoneId == ZONE_VEILED_SEA);
     }
 
+    void TeleportOutsideRestoredVanillaRaid(Player *player)
+	{
+        int mapId = player->GetMapId();
+        if ((mapId == MAP_NAXXRAMAS || mapId == MAP_ONYXIAS_LAIR)
+            && player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
+        {
+            switch (mapId)
+            {
+                case MAP_NAXXRAMAS:
+                    player->TeleportTo(0, 3082.641f, -3725.79f, 132.42f, 0);
+                    break;
+                case MAP_ONYXIAS_LAIR:
+                    player->TeleportTo(1, -4737.995f, -3745.33f, 53.68f, 0);
+                    break;
+                default:
+                    break;
+            }
+        }
+	}
+
 public:
     IndividualPlayerProgression() : PlayerScript("IndividualProgression") { }
 
     void OnPlayerLogin(Player* player) override
     {
+        TeleportOutsideRestoredVanillaRaid(player);
+
         if (player->getClass() == CLASS_DEATH_KNIGHT && sIndividualProgression->deathKnightStartingProgression && !sIndividualProgression->hasPassedProgression(player, static_cast<ProgressionState>(sIndividualProgression->deathKnightStartingProgression)))
-        {
             sIndividualProgression->UpdateProgressionState(player, static_cast<ProgressionState>(sIndividualProgression->deathKnightStartingProgression));
-        }
+
         if (sIndividualProgression->startingProgression && !sIndividualProgression->hasPassedProgression(player, static_cast<ProgressionState>(sIndividualProgression->startingProgression)))
-        {
             sIndividualProgression->UpdateProgressionState(player, static_cast<ProgressionState>(sIndividualProgression->startingProgression));
-        }
+
         sIndividualProgression->CheckAdjustments(player);
     }
+
+	void OnPlayerLogout(Player *player) override
+	{
+		TeleportOutsideRestoredVanillaRaid(player);
+	}
+
+	void OnPlayerBeforeLogout(Player *player) override
+	{
+		TeleportOutsideRestoredVanillaRaid(player);
+	}
 
     void OnPlayerSetMaxLevel(Player* player, uint32& maxPlayerLevel) override
     {
