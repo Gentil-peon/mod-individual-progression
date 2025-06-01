@@ -23,6 +23,7 @@ UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_naxx40' WHERE `map` = 0 AND 
 
 /* 2.0+ - NPCs/Gobjects added in Eastern/Kalimdor during TBC pre-patch or more */
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
+11701, -- Mor'Vek, Un'Goro
 16288, -- Advisor Sorrelon, The Sepulcher
 17092, -- Advisor Duskingdawn, Tarren Mill
 17093, -- Magistrix Elosai, Freewind Post
