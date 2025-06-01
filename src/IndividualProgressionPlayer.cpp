@@ -738,8 +738,8 @@ public:
         if (!sIndividualProgression->enabled)
             return;
 
-        if(!sIndividualProgression->dynamicPhasingEventMobs)
-            return;
+        // if(!sIndividualProgression->dynamicPhasingEventMobs)
+        //     return;
 
         if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
             || sIndividualProgression->isMonsterFromScourgeEvent(enemy))
@@ -1008,8 +1008,8 @@ public:
         if (!sIndividualProgression->enabled)
             return;
 
-        if(!sIndividualProgression->dynamicPhasingEventMobs)
-            return;
+        // if(!sIndividualProgression->dynamicPhasingEventMobs)
+        //     return;
 
         if (sIndividualProgression->isMonsterFromAqEvent(unit) 
             || sIndividualProgression->isMonsterFromScourgeEvent(unit))
@@ -1033,8 +1033,8 @@ public:
         if (!sIndividualProgression->enabled)
             return;
 
-        if(!sIndividualProgression->dynamicPhasingEventMobs)
-            return;
+        // if(!sIndividualProgression->dynamicPhasingEventMobs)
+        //     return;
 
         if (sIndividualProgression->isMonsterFromAqEvent(unit))
         {
@@ -1054,8 +1054,8 @@ public:
         if (!sIndividualProgression->enabled)
             return;
 
-        if(!sIndividualProgression->dynamicPhasingEventMobs)
-            return;
+        // if(!sIndividualProgression->dynamicPhasingEventMobs)
+        //     return;
 
         if (sIndividualProgression->isMonsterFromAqEvent(unit))
         {
