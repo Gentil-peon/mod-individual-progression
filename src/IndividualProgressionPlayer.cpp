@@ -748,23 +748,23 @@ public:
         return true;
     }
 
-    void OnPlayerEnterCombat(Player* player, Unit* enemy) override
-    {
-        if (!sIndividualProgression->enabled)
-            return;
+    // void OnPlayerEnterCombat(Player* player, Unit* enemy) override
+    // {
+    //     if (!sIndividualProgression->enabled)
+    //         return;
 
-        // if(!sIndividualProgression->dynamicPhasingEventMobs)
-        //     return;
+    //     // if(!sIndividualProgression->dynamicPhasingEventMobs)
+    //     //     return;
 
-        if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
-            || sIndividualProgression->isMonsterFromScourgeEvent(enemy)
-            || sIndividualProgression->isMonsterFromDarkPortalEvent(enemy))
-        {
-            enemy->SetPhaseMask(1, false);
-            enemy->UpdateObjectVisibility(true);
-            player->UpdateObjectVisibility(true);
-        }
-    }
+    //     if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
+    //         || sIndividualProgression->isMonsterFromScourgeEvent(enemy)
+    //         || sIndividualProgression->isMonsterFromDarkPortalEvent(enemy))
+    //     {
+    //         enemy->SetPhaseMask(1, false);
+    //         enemy->UpdateObjectVisibility(true);
+    //         player->UpdateObjectVisibility(true);
+    //     }
+    // }
 };
 
 class IndividualPlayerProgression_AccountScript: public AccountScript
@@ -1027,16 +1027,15 @@ public:
         // if(!sIndividualProgression->dynamicPhasingEventMobs)
         //     return;
 
-        if (sIndividualProgression->isMonsterFromAqEvent(unit) 
-            || sIndividualProgression->isMonsterFromScourgeEvent(unit))
+        if (victim->IsPlayer()
+            && (sIndividualProgression->isMonsterFromAqEvent(unit) || sIndividualProgression->isMonsterFromDarkPortalEvent(unit) || sIndividualProgression->isMonsterFromScourgeEvent(unit)))
         {
             unit->SetPhaseMask(1, false);
             unit->UpdateObjectVisibility(true);
             victim->UpdateObjectVisibility(true);
         }
-
-        if (sIndividualProgression->isMonsterFromAqEvent(victim) 
-            || sIndividualProgression->isMonsterFromScourgeEvent(victim))
+        else if (unit->IsPlayer()
+            && (sIndividualProgression->isMonsterFromAqEvent(victim) || sIndividualProgression->isMonsterFromDarkPortalEvent(victim) || sIndividualProgression->isMonsterFromScourgeEvent(victim)))
         {
             victim->SetPhaseMask(1, false);
             victim->UpdateObjectVisibility(true);
