@@ -376,7 +376,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;            
@@ -388,15 +388,15 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 else if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA)) 
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
-                    player->CastSpell(player, IPP_PHASE_AQ, false);
+                    player->RemoveAura(IPP_PHASE_II);
+                    player->CastSpell(player, IPP_PHASE_II, false);
                 }
                 break;    
             case AREA_BOUGH_SHADOW:
@@ -408,7 +408,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -430,7 +430,6 @@ public:
             case AREA_RISE_OF_THE_DEFILER:
             case AREA_DREADMAUL_HOLD:
             case AREA_DREADMAUL_POST:
-            case AREA_THE_DARK_PORTAL:
             case AREA_SERPENTS_COIL:
             case AREA_TANARIS:
             case AREA_GADGETZAN:
@@ -454,7 +453,23 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
+                    player->CastSpell(player, IPP_PHASE, false);
+                }
+                break;
+            case AREA_THE_DARK_PORTAL:
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40)) && player->GetLevel() == IP_LEVEL_VANILLA
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_II);
+                    player->CastSpell(player, IPP_PHASE_II, false);
+                }
+                else if (((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_TBC))
+                {
+                    player->RemoveAura(IPP_PHASE);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -463,7 +478,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -472,7 +487,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -489,7 +504,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -500,7 +515,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -522,7 +537,7 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_TBC))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
@@ -533,11 +548,11 @@ public:
                     || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 } else {
                     player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_AQ);
+                    player->RemoveAura(IPP_PHASE_II);
                 }
         }
     }
