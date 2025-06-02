@@ -60,13 +60,14 @@ enum BuffSpells
 
 enum ProgressionQuestIDs
 {
-    MIGHT_OF_KALIMDOR     = 8742,
-    BANG_A_GONG           = 108743,
-    CHAOS_AND_DESTRUCTION = 108744,
-    QUEST_MORROWGRAIN     = 3803,
     QUEST_TROLL_NECKLACE  = 2881,
+    QUEST_MORROWGRAIN     = 3803,
     QUEST_DEADWOOD        = 6221,
-    QUEST_WINTERFALL      = 6241
+    QUEST_WINTERFALL      = 6241,
+    MIGHT_OF_KALIMDOR     = 8742,
+    INTO_THE_BREACH       = 10259,
+    BANG_A_GONG           = 108743,
+    CHAOS_AND_DESTRUCTION = 108744
 };
 
 enum ProgressionZones
@@ -142,25 +143,25 @@ enum ProgressionSettings
     SETTING_PROGRESSION_STATE = 0
 };
 
-enum ProgressionState : uint8
+enum ProgressionState : uint8         // Progression stands for what has been completed
 {
     PROGRESSION_START           = 0,
-    PROGRESSION_MOLTEN_CORE     = 1,
+    PROGRESSION_MOLTEN_CORE     = 1, // BWL available
     PROGRESSION_ONYXIA          = 2,
-    PROGRESSION_BLACKWING_LAIR  = 3, // AQ War effort + Gong quest line
+    PROGRESSION_BLACKWING_LAIR  = 3, // ZG, AQ War effort, AQ quest line
     PROGRESSION_PRE_AQ          = 4, // AQ outdoors war + AQ gates open, raid available
-    PROGRESSION_AQ              = 5,
-    PROGRESSION_NAXX40          = 6,
-    PROGRESSION_TBC_TIER_1      = 7,  // Karazhan, Gruul's Lair, Magtheridon's Lair
-    PROGRESSION_TBC_TIER_2      = 8,  // Serpentshrine Cavern, Tempest Keep
-    PROGRESSION_TBC_TIER_3      = 9,  // Hyjal Summit and Black Temple
-    PROGRESSION_TBC_TIER_4      = 10, // Zul'Aman
-    PROGRESSION_TBC_TIER_5      = 11, // Sunwell Plateau
-    PROGRESSION_WOTLK_TIER_1    = 12, // WotLK Naxx, EoE, OS
-    PROGRESSION_WOTLK_TIER_2    = 13, // Ulduar
-    PROGRESSION_WOTLK_TIER_3    = 14, // TotC
-    PROGRESSION_WOTLK_TIER_4    = 15, // ICC
-    PROGRESSION_WOTLK_TIER_5    = 16  // Ruby Sanctum
+    PROGRESSION_AQ              = 5, // Naxx40 and Scourge Invasion
+    PROGRESSION_NAXX40          = 6, // Karazhan, Gruul's Lair, Magtheridon's Lair
+    PROGRESSION_TBC_TIER_1      = 7, // Serpentshrine Cavern, Tempest Keep
+    PROGRESSION_TBC_TIER_2      = 8, // Hyjal Summit and Black Temple
+    PROGRESSION_TBC_TIER_3      = 9, // Zul'Aman
+    PROGRESSION_TBC_TIER_4      = 10, // Sunwell Plateau
+    PROGRESSION_TBC_TIER_5      = 11, // WotLK Naxx, EoE, OS
+    PROGRESSION_WOTLK_TIER_1    = 12, // Ulduar
+    PROGRESSION_WOTLK_TIER_2    = 13, // TotC
+    PROGRESSION_WOTLK_TIER_3    = 14, // ICC
+    PROGRESSION_WOTLK_TIER_4    = 15, // Ruby Sanctum
+    PROGRESSION_WOTLK_TIER_5    = 16  
 };
 
 enum RandomDungeonIds : uint16

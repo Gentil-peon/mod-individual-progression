@@ -216,12 +216,10 @@ public:
         bool CanBeSeen(Player const* player) override
         {
             Player* target = ObjectAccessor::FindConnectedPlayer(player->GetGUID());
+
             if (!target)
-            {
                 return false; 
-            }
-            // (RequirePreAQQuests = 1) - AQ gate closed after Nefarian kill. AQ Quest line needs to be done to open the gate. AQ War effort available but not needed.
-            // (RequirePreAQQuests = 0) - AQ gate opened after Nefarian kill. AQ War effort available but not needed.
+
             return sIndividualProgression->isBeforeProgression(target, PROGRESSION_PRE_AQ);            
         }
     };

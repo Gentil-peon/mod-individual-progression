@@ -14,7 +14,7 @@ private:
     }
 
     void TeleportOutsideRestoredVanillaRaid(Player *player)
-	{
+    {
         int mapId = player->GetMapId();
         if ((mapId == MAP_NAXXRAMAS || mapId == MAP_ONYXIAS_LAIR)
             && player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
@@ -31,7 +31,7 @@ private:
                     break;
             }
         }
-	}
+    }
 
 public:
     IndividualPlayerProgression() : PlayerScript("IndividualProgression") { }
@@ -49,15 +49,15 @@ public:
         sIndividualProgression->CheckAdjustments(player);
     }
 
-	void OnPlayerLogout(Player *player) override
-	{
-		TeleportOutsideRestoredVanillaRaid(player);
-	}
+    void OnPlayerLogout(Player *player) override
+    {
+        TeleportOutsideRestoredVanillaRaid(player);
+    }
 
-	void OnPlayerBeforeLogout(Player *player) override
-	{
-		TeleportOutsideRestoredVanillaRaid(player);
-	}
+    void OnPlayerBeforeLogout(Player *player) override
+    {
+        TeleportOutsideRestoredVanillaRaid(player);
+    }
 
     void OnPlayerSetMaxLevel(Player* player, uint32& maxPlayerLevel) override
     {
