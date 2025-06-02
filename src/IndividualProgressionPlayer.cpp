@@ -426,8 +426,6 @@ public:
             case AREA_EASTERN_PLAGUELANDS:
             case AREA_PESTILENT_SCAR:
             case AREA_THE_MARRIS_STEAD:
-            case AREA_BLASTED_LANDS:
-            case AREA_RISE_OF_THE_DEFILER:
             case AREA_DREADMAUL_HOLD:
             case AREA_DREADMAUL_POST:
             case AREA_SERPENTS_COIL:
@@ -449,14 +447,16 @@ public:
             case AREA_BLACKROCK_MOUNTAIN:
             case AREA_DREADMAUL_ROCK:
             case AREA_RUINS_OF_THAURISSAN:
-                if (((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC))
-                    || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
+            if (((sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_NAXX40)) || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5) && player->GetLevel() == IP_LEVEL_TBC))
+                || (sIndividualProgression->isExcludedFromProgression(player) && (player->GetLevel() == IP_LEVEL_VANILLA || player->GetLevel() == IP_LEVEL_TBC)))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
                 }
                 break;
+            case AREA_BLASTED_LANDS:
+            case AREA_RISE_OF_THE_DEFILER:
             case AREA_THE_DARK_PORTAL:
                 if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40)) && player->GetLevel() == IP_LEVEL_VANILLA
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
@@ -757,7 +757,8 @@ public:
         //     return;
 
         if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
-            || sIndividualProgression->isMonsterFromScourgeEvent(enemy))
+            || sIndividualProgression->isMonsterFromScourgeEvent(enemy)
+            || sIndividualProgression->isMonsterFromDarkPortalEvent(enemy))
         {
             enemy->SetPhaseMask(1, false);
             enemy->UpdateObjectVisibility(true);
@@ -1051,7 +1052,8 @@ public:
         // if(!sIndividualProgression->dynamicPhasingEventMobs)
         //     return;
 
-        if (sIndividualProgression->isMonsterFromAqEvent(unit))
+        if (sIndividualProgression->isMonsterFromAqEvent(unit)
+            || sIndividualProgression->isMonsterFromDarkPortalEvent(unit))
         {
             unit->SetPhaseMask(131072, false);
             unit->UpdateObjectVisibility(true);
@@ -1072,7 +1074,8 @@ public:
         // if(!sIndividualProgression->dynamicPhasingEventMobs)
         //     return;
 
-        if (sIndividualProgression->isMonsterFromAqEvent(unit))
+        if (sIndividualProgression->isMonsterFromAqEvent(unit)
+            || sIndividualProgression->isMonsterFromDarkPortalEvent(unit))
         {
             unit->SetPhaseMask(131072, false);
             unit->UpdateObjectVisibility(true);
@@ -1086,7 +1089,8 @@ public:
             killer->UpdateObjectVisibility(true);
         }
 
-        if (sIndividualProgression->isMonsterFromAqEvent(killer))
+        if (sIndividualProgression->isMonsterFromAqEvent(killer)
+        || sIndividualProgression->isMonsterFromDarkPortalEvent(killer))
         {
             killer->SetPhaseMask(131072, false);
             killer->UpdateObjectVisibility(true);

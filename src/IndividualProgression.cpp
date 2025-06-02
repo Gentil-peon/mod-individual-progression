@@ -192,42 +192,60 @@ bool IndividualProgression::isExcludedFromProgression(Player* player)
     return (accountNameFound && std::regex_match(accountName, excludedAccountsRegex));
 }
 
-bool IndividualProgression::isMonsterFromScourgeEvent(Unit* unit)
+bool IndividualProgression::isMonsterFromAqEvent(Unit* unit)
 {
     switch (unit->GetEntry())
     {
-        case 14697: // Lumbering Horror (Scourge Invasion event)
-        case 16141: // Ghoul Berserker (Scourge Invasion event)
-        case 16143: // Shadow of Doom (Scourge Invasion event)
-        case 16230: // Cultist Engineer (Scourge Invasion event)
-        case 16298: // Spectral Soldier (Scourge Invasion event)
-        case 16299: // Skeletal Shocktrooper (Scourge Invasion event)
-        case 16379: // Spirit of the Damned (Scourge Invasion event)
-        case 16380: // Bone Witch (Scourge Invasion event)
-        case 16422: // Skeletal Soldier (Scourge Invasion event)
-        case 16423: // Spectral Apparition (Scourge Invasion event)
-        case 16437: // Spectral Spirit (Scourge Invasion event)
-        case 16438: // Skeletal Trooper (Scourge Invasion event)
-        case 28194: // Tenris (WotLK Scourge Invasion event)
-        case 29604: // Broll Bearmantle (WotLK Scourge Invasion event)
-        case 29607: // Valeera Sanguinar (WotLK Scourge Invasion event)
+        case 15740: // Colossus of Zora
+        case 15741: // Colossus of Regal
+        case 15742: // Colossus of Ashi
+        case 15758: // Supreme Anubisath Warbringer
+        case 15810: // Eroded Anubisath Warbringer
+        case 15813: // Qiraji Officer Zod
+        case 15818: // Lieutenant General Nokhor
             return true;
         default:
             return false;
     }
 }
 
-bool IndividualProgression::isMonsterFromAqEvent(Unit* unit)
+bool IndividualProgression::isMonsterFromDarkPortalEvent(Unit* unit)
 {
     switch (unit->GetEntry())
     {
-        case 15740: // Colossus of Zora (AQ war)
-        case 15741: // Colossus of Regal (AQ war)
-        case 15742: // Colossus of Ashi (AQ war)
-        case 15758: // Supreme Anubisath Warbringer (AQ war)
-        case 15810: // Eroded Anubisath Warbringer (AQ war)
-        case 15813: // Qiraji Officer Zod (AQ war)
-        case 15818: // Lieutenant General Nokhor (AQ war)
+        case 19284: // Invading Felguard
+        case 19285: // Invading Infernal
+        case 19286: // Invading Fel Stalker
+        case 19287: // Invading Voidwalker
+        case 19288: // Dreadknight
+        case 19290: // Invading Anguisher
+        case 19311: // Portal Hound
+        case 19391: // Felguard Lieutenant
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool IndividualProgression::isMonsterFromScourgeEvent(Unit* unit)
+{
+    switch (unit->GetEntry())
+    {
+        case 14697: // Lumbering Horror
+        case 16141: // Ghoul Berserker
+        case 16143: // Shadow of Doom
+        case 16230: // Cultist Engineer
+        case 16298: // Spectral Soldier
+        case 16299: // Skeletal Shocktrooper
+        case 16379: // Spirit of the Damned
+        case 16380: // Bone Witch
+        case 16422: // Skeletal Soldier
+        case 16423: // Spectral Apparition
+        case 16437: // Spectral Spirit
+        case 16438: // Skeletal Trooper
+        case 28194: // Tenris
+        case 29604: // Broll Bearmantle
+        case 29607: // Valeera Sanguinar
             return true;
         default:
             return false;
