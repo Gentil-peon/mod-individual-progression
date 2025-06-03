@@ -748,23 +748,6 @@ public:
         return true;
     }
 
-    // void OnPlayerEnterCombat(Player* player, Unit* enemy) override
-    // {
-    //     if (!sIndividualProgression->enabled)
-    //         return;
-
-    //     // if(!sIndividualProgression->dynamicPhasingEventMobs)
-    //     //     return;
-
-    //     if (sIndividualProgression->isMonsterFromAqEvent(enemy) 
-    //         || sIndividualProgression->isMonsterFromScourgeEvent(enemy)
-    //         || sIndividualProgression->isMonsterFromDarkPortalEvent(enemy))
-    //     {
-    //         enemy->SetPhaseMask(1, false);
-    //         enemy->UpdateObjectVisibility(true);
-    //         player->UpdateObjectVisibility(true);
-    //     }
-    // }
 };
 
 class IndividualPlayerProgression_AccountScript: public AccountScript

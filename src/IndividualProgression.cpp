@@ -45,7 +45,7 @@ void IndividualProgression::CheckAdjustments(Player* player) const
     {
         return;
     }
-    if (player->GetLevel() <= IP_LEVEL_VANILLA)
+    if (player->GetLevel() <= IP_LEVEL_VANILLA && player->getClass() != CLASS_DEATH_KNIGHT)
     {
         AdjustVanillaStats(player);
     }
