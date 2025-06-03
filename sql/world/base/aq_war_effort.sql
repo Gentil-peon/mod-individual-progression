@@ -81,7 +81,7 @@ UPDATE `creature_template` SET `gossip_menu_id` = 3118107, `npcflag` = 3 WHERE `
 UPDATE `quest_template` SET `AllowableRaces` = 690 WHERE `ID` IN (8792, 8793, 8794, 10500);
 UPDATE `quest_template` SET `AllowableRaces` = 1101 WHERE `ID` IN (8795, 8796, 8797, 10501);
 
-DELETE FROM `creature_queststarter` WHERE `quest` IN (8792, 8795, 8796, 8797, 10500, 10501);
+DELETE FROM `creature_queststarter` WHERE `quest` IN (8792, 8793, 8794, 8795, 8796, 8797, 10500, 10501);
 INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (15702, 8792), (15703, 8792), (15704, 8792), (21155, 8792), (15707, 8795), (15708, 8795), (15709, 8795), (21156, 8795);
 
 DELETE FROM `creature_questender` WHERE `quest` IN (8792, 8793, 8794, 8795, 8796, 8797, 10500, 10501);
@@ -149,6 +149,10 @@ INSERT INTO `creature_template_addon` (`entry`,`path_id`,`mount`,`bytes1`,`bytes
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_we' WHERE `entry` IN 
 (15383, 15431, 15432, 15434, 15437, 15445, 15446, 15448, 15450, 15451, 15452, 15453, 15455, 15456, 15457, 15459, 15460, 15469, 15477, 15508, 15512, 15515, 15522, 15525, 
 15528, 15529, 15532, 15533, 15534, 15535, 15700, 15701, 15702, 15703, 15704, 15707, 15708, 15709, 15738, 15737, 15739, 15736, 15731, 15733, 15735, 15734, 21155, 21156, 21968, 21969);
+
+-- Phase AQ War Effort Npcs (Recruiters)
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_we_recruiters' WHERE `entry` IN 
+(15702, 15703, 15704, 15707, 15708, 15709, 21155, 21156);
 
 -- Phase AQ War Effort Objects
 DELETE FROM `gameobject` WHERE `id` IN (180598, 180679, 180680, 180681, 180812, 180818, 180826, 180832, 180838);
