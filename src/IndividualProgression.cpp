@@ -45,7 +45,13 @@ void IndividualProgression::CheckAdjustments(Player* player) const
     {
         return;
     }
-    if (player->GetLevel() <= IP_LEVEL_VANILLA && player->getClass() != CLASS_DEATH_KNIGHT)
+    
+    if (player->getClass() == CLASS_DEATH_KNIGHT && player->GetMapId() == AREA_PLAGUELANDS_THE_SCARLET_ENCLAVE)
+    {
+        // DK starting zone/area
+        AdjustWotLKStats(player);
+    }
+    else if (player->GetLevel() <= IP_LEVEL_VANILLA && player->getClass() != CLASS_DEATH_KNIGHT)
     {
         AdjustVanillaStats(player);
     }
@@ -57,6 +63,7 @@ void IndividualProgression::CheckAdjustments(Player* player) const
     {
         AdjustWotLKStats(player);
     }
+
     if (player->getClass() == CLASS_HUNTER)
     {
         // Remove the 15% built-in ranged haste that was added to hunters in WotLK
