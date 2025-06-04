@@ -10,10 +10,6 @@ ALTER TABLE item_template MODIFY arcane_res SMALLINT;
 UPDATE item_template SET RequiredReputationFaction=529, RequiredReputationRank=6 WHERE entry IN (18169, 18170, 18171, 18172, 18173);
 UPDATE item_template SET RequiredReputationFaction=529, RequiredReputationRank=7 WHERE entry=18182;
 
--- In 3.1 all ammo was changed to stack to 1000. This reduced the usefulness of quivers and ammo pouches
-UPDATE `item_template` SET `stackable` = 200 WHERE `stackable` = 1000 AND `InventoryType` = 24;
-UPDATE `item_template` SET `stackable` = 1000 WHERE `entry` IN (41164, 41165, 41584, 41586, 52020, 52021); -- WotLK ammo
-
 -- Restore quiver functionality
 UPDATE `item_template` SET `spellid_1` = 29418 WHERE `entry` IN (2101, 3573, 5439, 7278, 11362); 
 UPDATE `item_template` SET `spellid_1` = 14824 WHERE `entry` IN (2102, 3574, 5441, 7279, 11363);
@@ -19910,10 +19906,10 @@ UPDATE item_template SET BuyPrice = 120, SellPrice = 30 WHERE entry=2892;
 UPDATE item_template SET BuyPrice = 220, SellPrice = 55 WHERE entry=2893;
 
 /*  Dust of Decay  */
-UPDATE item_template SET Quality = 1, class = 7 WHERE entry=2928;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 2928;
 
 /*  Essence of Pain  */
-UPDATE item_template SET Quality = 1, class = 7 WHERE entry=2930;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 2930;
 
 /*  Maiden's Anguish  */
 UPDATE item_template SET Quality = 1, ItemLevel = 34, class = 7, BuyPrice = 100, SellPrice = 25 WHERE entry=2931;
@@ -19952,7 +19948,7 @@ UPDATE item_template SET BuyPrice = 52, SellPrice = 13 WHERE entry=3775;
 UPDATE item_template SET Quality = 1, class = 0 WHERE entry=3776;
 
 /*  Lethargy Root  */
-UPDATE item_template SET class = 7 WHERE entry=3777;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 3777;
 
 /*  Carefully Folded Note  */
 UPDATE item_template SET ItemLevel = 45, RequiredLevel = 45 WHERE entry=4098;
@@ -19994,16 +19990,16 @@ UPDATE item_template SET SellPrice = 25 WHERE entry=5105;
 UPDATE item_template SET Quality = 1 WHERE entry=5116;
 
 /*  Flash Powder  */
-UPDATE item_template SET Quality = 1, Flags = 0 WHERE entry=5140;
+UPDATE `item_template` SET `Quality` = 1, `Flags` = 0, `class` = 5, `subclass` = 0 WHERE `entry` = 5140;
 
 /* Blinding Powder */
-UPDATE item_template SET subclass = 1, Quality = 1, description = '' WHERE entry=5530;
+UPDATE `item_template` SET `Quality` = 1, `Flags` = 0, `class` = 5, `subclass` = 0, description = '' WHERE `entry` = 5530;
 
 /*  Book of Healing Touch III  */
 UPDATE item_template SET BuyPrice = 900 WHERE entry=5150;
 
 /*  Deathweed  */
-UPDATE item_template SET Quality = 1, class = 7 WHERE entry=5173;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 5173;
 
 /*  Mind-numbing Poison  */
 UPDATE item_template SET BuyPrice = 72, SellPrice = 18 WHERE entry=5237;
@@ -20243,10 +20239,10 @@ UPDATE item_template SET BuyPrice = 4, SellPrice = 1 WHERE entry=8683;
 UPDATE item_template SET ItemLevel = 34, RequiredLevel = 24 WHERE entry=8827;
 
 /*  Essence of Agony  */
-UPDATE item_template SET Quality = 1, class = 7 WHERE entry=8923;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 8923;
 
 /*  Dust of Deterioration  */
-UPDATE item_template SET Quality = 1, class = 7 WHERE entry=8924;
+UPDATE `item_template` SET `Quality` = 0, `class` = 15, `subclass` = 0 WHERE `entry` = 8924;
 
 /*  Instant Poison IV  */
 UPDATE item_template SET BuyPrice = 300, SellPrice = 75 WHERE entry=8926;
