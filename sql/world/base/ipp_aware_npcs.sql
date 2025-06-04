@@ -9,12 +9,12 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_ds2' WHERE `entry` IN (15
 
 -- Phasing Cenarion Hold NPCs
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_preaq' WHERE `entry` IN (15176, 15180, 15181, 15183, 15188, 15189, 15190, 15191, 15293, 15194, 
-                                                                                15306, 15419, 15599, 15612, 15613, 15614, 15693, 15903, 16543, 17081, 17082);
+                                                                                15306, 15419, 15599, 15612, 15613, 15614, 15693, 15903, 16543);
 -- Phasing Cenarion Hold guards
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_preaq' WHERE `id1` = 15184 AND `guid` IN (42782, 42783, 42768);
 
 -- Phasing NPCs until after the outdoors AQ war has been completed
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_aq' WHERE `entry` IN  (15498, 15499, 15500, 15540, 16091);                -- Cenarion Hold
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_aq' WHERE `entry` IN  (15498, 15499, 15500, 15540, 16091, 17081, 17082);                -- Cenarion Hold
 
 UPDATE `creature` SET `phaseMask` = @IPPPHASE_II WHERE `id1` IN (15612, 15613, 15615, 15616, 15617, 17070, 17079, 17766,         -- Orgrimmar Legion Post 
                                                                  15440, 15441, 15442, 15443, 15444, 15903, 17068, 17080, 17765); -- Ironforge Brigade post
