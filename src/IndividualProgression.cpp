@@ -46,16 +46,11 @@ void IndividualProgression::CheckAdjustments(Player* player) const
         return;
     }
     
-    if (player->getClass() == CLASS_DEATH_KNIGHT && player->GetMapId() == AREA_PLAGUELANDS_THE_SCARLET_ENCLAVE)
-    {
-        // DK starting zone/area
-        AdjustWotLKStats(player);
-    }
-    else if (player->GetLevel() <= IP_LEVEL_VANILLA && player->getClass() != CLASS_DEATH_KNIGHT)
+    if (player->GetLevel() <= IP_LEVEL_VANILLA && player->getClass() != CLASS_DEATH_KNIGHT)
     {
         AdjustVanillaStats(player);
     }
-    else if (player->GetLevel() <= IP_LEVEL_TBC)
+    else if (player->GetLevel() <= IP_LEVEL_TBC && player->getClass() != CLASS_DEATH_KNIGHT)
     {
         AdjustTBCStats(player);
     }
