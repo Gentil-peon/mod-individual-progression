@@ -42,11 +42,11 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 
 /* Make trinket works: Monster Slayer's Kit (40354) */
 /* spell_item_monster_slayer_s_kit is not implemented in AzerothCore at the moment, we are replacing it */
-DELETE FROM `spell_script_names` WHERE `id` = 54092;
+DELETE FROM `spell_script_names` WHERE `spell_id` = 54092;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (54092, 'spell_item_six_demon_bag');
 
 /* Broll and Valeera at Stormwind Harbor */
-DELETE FROM `creature` WHERE `id1` IN (29604, 29607);
+DELETE FROM `creature` WHERE `id1` IN (29604, 29607) and `map` = 0;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (@CGUID+990, 29604, 0, 0, 0, 0, 0, 1, @IPPPHASE, 0, -8541.75, 1017.81, 89.7305, 0.897277, 300, 0, 0, 151200, 0, 0, 0, 0, 0, '', NULL, 0, NULL),
