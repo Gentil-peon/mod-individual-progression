@@ -372,30 +372,16 @@ public:
             case AREA_GROVE_OF_THE_ANCIENTS:    
             case AREA_WILDBEND_RIVER:
             case AREA_TWILIGHT_VALE:
-                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
-                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
-                {
-                    player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_II);
-                    player->CastSpell(player, IPP_PHASE, false);
-                }
-                break;            
             case AREA_SILITHUS:    
             case AREA_HIVE_ASHI:
             case AREA_HIVE_ZORA:
             case AREA_HIVE_REGAL:
-                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ)))
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
+                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_II);
                     player->CastSpell(player, IPP_PHASE, false);
-                }
-                else if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_AQ)
-                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_VANILLA)) 
-                {
-                    player->RemoveAura(IPP_PHASE);
-                    player->RemoveAura(IPP_PHASE_II);
-                    player->CastSpell(player, IPP_PHASE_II, false);
                 }
                 break;    
             case AREA_BOUGH_SHADOW:
