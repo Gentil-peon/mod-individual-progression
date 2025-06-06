@@ -376,8 +376,7 @@ public:
             case AREA_HIVE_ASHI:
             case AREA_HIVE_ZORA:
             case AREA_HIVE_REGAL:
-                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
-                    || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() >= IP_LEVEL_WOTLK))
+                if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ) && sIndividualProgression->isBeforeProgression(player, PROGRESSION_AQ))
                 {
                     player->RemoveAura(IPP_PHASE);
                     player->RemoveAura(IPP_PHASE_II);
