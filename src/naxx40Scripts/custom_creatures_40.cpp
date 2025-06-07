@@ -8,24 +8,6 @@
 
 class npc_naxx40_area_trigger : public CreatureScript
 {
-private:
-    static bool isAttuned(Player* player)
-    {
-        if (player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
-            return true;
-
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
-            return true;
-
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
-            return true;
-
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
-            return true;
-
-        return false;
-    }
-
 public:
     npc_naxx40_area_trigger() : CreatureScript("npc_naxx40_area_trigger") {}
 
@@ -42,7 +24,7 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {   
-                    if (isAttuned(player)
+                    if (sIndividualProgression->isAttunedNaxx(player)
                         || sIndividualProgression->isExcludedFromProgression(player)
                         || sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40))
                     {
@@ -57,7 +39,7 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if (isAttuned(player)
+                    if (sIndividualProgression->isAttunedNaxx(player)
                         || sIndividualProgression->isExcludedFromProgression(player)
                         || sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40))
                     {

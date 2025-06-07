@@ -982,7 +982,8 @@ UPDATE `quest_template` SET `Flags` = 64 WHERE `ID` = 7509;
 
 -- Unfired Ancient Blade
 UPDATE `item_template` SET `Flags` = 32768, `spellid_1` = 0, `description` = 'Bring this blade with you to Onyxia\'s Lair.' WHERE `entry` = 18489; -- was flagged as depreciated item
-    
+UPDATE `item_template` SET `spellid_1` = 22905 WHERE `entry` = 18489; -- want to keep the base spell on item
+
 DELETE FROM `creature_queststarter` WHERE `quest` = 7509;
 INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (14368, 7509);
@@ -1035,8 +1036,6 @@ INSERT INTO `gossip_menu_option` (`menuID`, `optionid`, `OptionIcon`, `OptionTex
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 14368 AND `source_type` = 0 AND `id` IN (1, 2);
 insert into `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) values('14368','0','1','0','62','0','100','0','60045','0','0','0','56','18513','1','0','0','0','0','7','0','0','0','0','0','0','0','Lorekeeper Lydros - Giving A Dull and Flat Elven Blade after cliking on last gossip');
 insert into `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) values('14368','0','2','0','62','0','100','0','60045','0','0','0','72','0','0','0','0','0','0','7','0','0','0','0','0','0','0','Lorekeeper Lydros - On Gossip Option 0 Selected - Close Gossip');
-
-UPDATE `item_template` SET `spellid_1` = 22905 WHERE `entry` = 18489;
 
 delete from `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND  `SourceEntry` = 22905;
 insert into `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) values('17','0','22905','0','0','29','0','10184','10','1','0','0','0','','Place Unfired Blade - near dead onyxia');

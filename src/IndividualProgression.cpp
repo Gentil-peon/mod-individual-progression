@@ -3,6 +3,7 @@
  */
 
 #include "IndividualProgression.h"
+#include "naxxramas.h"
 
 IndividualProgression* IndividualProgression::instance()
 {
@@ -181,6 +182,21 @@ uint8 IndividualProgression::GetAccountProgression(uint32 accountId)
         } while (result->NextRow());
     }
     return progressionLevel;
+}
+
+bool IndividualProgression::isAttunedNaxx(Player* player)
+{
+    if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED
+        || player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED
+        || player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED
+        || player->IsGameMaster() || isExcludedFromProgression(player))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 bool IndividualProgression::isExcludedFromProgression(Player* player)

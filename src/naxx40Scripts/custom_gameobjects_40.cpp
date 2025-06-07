@@ -9,20 +9,6 @@
 
 class gobject_naxx40_tele : public GameObjectScript
 {
-private:
-    static bool isAttuned(Player* player)
-    {
-        if (player->IsGameMaster() || sIndividualProgression->isExcludedFromProgression(player))
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
-            return true;
-        return false;
-    }
-
 public:
     gobject_naxx40_tele() : GameObjectScript("gobject_naxx40_tele") { }
 
@@ -39,8 +25,8 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
-            || sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40)
+        if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && sIndividualProgression->isAttunedNaxx(player))
+            || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) && player->GetLevel() < 71)
             || sIndividualProgression->isExcludedFromProgression(player)
             || player->IsGameMaster())
         {
@@ -48,7 +34,6 @@ public:
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
             player->TeleportTo(533, 3006.05f, -3466.81f, 298.219f, 4.6824f);
         }
-
         return true;
     }
 };
