@@ -1,3 +1,5 @@
+/* I keep this for now: I don't use quest progression conditions for now */
+
 /* Nakodu shouldn't sell certain recipes until progression tier 10 */
 /* to solve this a copy of him is created that only sells recipes that were available before progression tier 10 */
 /* the original Nakodu will replace his copy at progression tier 10 */
