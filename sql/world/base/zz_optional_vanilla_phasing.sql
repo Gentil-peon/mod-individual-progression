@@ -71,6 +71,12 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 37915  -- Timothy Cunningham, The Bulwark, Flight Master
 );
 
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
+WHERE `map` = 0 AND `id` = 184463; -- Karazhan meeting stone
+
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
+WHERE `map` = 1 AND `id` = 182560; -- Time cavern meeting stone
+
 /* 3.0+ - NPCs/Gobjects added in Eastern/Kalimdor during WotLK pre-patch or more */
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (
 26537, -- Greeb Ramrocket, Zep
