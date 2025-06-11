@@ -428,7 +428,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
     (12805, 18445, 492), (12805, 18447, 931), (12805, 18448, 492), (12805, 18449, 931), (12805, 18454, 492), (12805, 18455, 931), (12805, 18456, 492), (12805, 18457, 931), 
     (12805, 18854, 634), (12805, 18856, 634), (12805, 18858, 634), (12805, 18859, 634), (12805, 18862, 634), (12805, 18863, 634), (12805, 18864, 634);
 
-/* I don't use quest progression conditions for now */
+/* I don't use quest progression conditions for now, and I use some other pvp conditions instead for this items */
 /* Hide certain vendor items until the player has reached the progression tier for them */
 -- DELETE FROM `conditions` WHERE `SourceGroup` IN (12777, 12782);
 -- INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
