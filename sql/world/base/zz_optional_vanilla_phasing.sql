@@ -104,9 +104,6 @@ UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (
 /* Fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle */
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
-/* Outland map outside Dark Portal */
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 42457;
-
 /* Remove interactions between Cersei, Lorrin and the orcs in Stonard */
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
 
