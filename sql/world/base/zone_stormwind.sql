@@ -324,6 +324,7 @@ DELETE FROM `npc_vendor` WHERE `entry`=6740 AND `item` IN (4536, 4537, 4538, 453
 -- Lieutenant Rachel Vaccar <Outland Armor Quartermaster>
 DELETE FROM `npc_vendor` WHERE `entry`=12778;
 
+
 SET @Biggins     := 112781; -- Master Sergeant Biggins <Officer Accessories Quartermaster>, Vanilla
 SET @Clate       := 112785; -- Stone Guard Zarg <Food and Drink>, Vanilla
 
@@ -524,12 +525,12 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`, `ExtendedCost
 (24672, 31632, 0, 0, 2263), (24672, 31633, 0, 0, 2265), (24672, 31634, 0, 0, 2267), (24672, 31640, 0, 0, 2259), (24672, 31641, 0, 0, 2261), (24672, 31642, 0, 0, 2263),
 (24672, 31643, 0, 0, 2265), (24672, 31644, 0, 0, 2267);
 
-/* I don't use quest progression conditions for now, and I use some other pvp conditions instead for this items */
+
 /* Hide certain vendor items until the player has reached the progression tier for them */
 DELETE FROM `conditions` WHERE `SourceGroup` IN (12777, 12782, 12783, 26394);
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
---
+-- --
 -- (23, 12777, 16437, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Captain Dirgehammer will not sell Marshals Silk Footwraps until the player has completed PROGRESSION_ONYXIA'),
 -- (23, 12777, 16440, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Captain Dirgehammer will not sell Marshals Silk Gloves until the player has completed PROGRESSION_ONYXIA'),
 -- (23, 12777, 16441, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Captain Dirgehammer will not sell Field Marshals Coronet until the player has completed PROGRESSION_ONYXIA'),

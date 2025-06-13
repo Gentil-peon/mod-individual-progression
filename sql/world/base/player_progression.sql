@@ -30,7 +30,7 @@ INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `Ques
 (66017, 2, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28006, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 'Progression Quest WotLK T4', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '', '', '', '', 12340),
 (66018, 2, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28006, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 'Progression Quest WotLK T5', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '', '', '', '', 12340);
 
-/* I don't use quest progression conditions for now */
+
 /* CREATURE DROPS */
 
 -- https://www.azerothcore.org/wiki/conditions
@@ -343,4 +343,3 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 --
 (1, 19768, 34689, 0, 1, 8, 0, 66011, 0, 0, 0, 0, 0, '', 'Design: Chaotic Skyfire Diamond will only drop if the player has completed PROGRESSION_TBC_TIER_3'),
 (1, 19768, 34689, 0, 1, 7, 0, 755, 1, 0, 0, 0, 0, '',   'Design: Chaotic Skyfire Diamond will only drop if the player has the Jewelcrafting skill');
-

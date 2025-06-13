@@ -52,17 +52,11 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (34948, 34949, 34950, 34951);
 UPDATE `gameobject_template` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `entry` IN (195532, 195533);
 
-/* I keep it for now: I don't use quest progression conditions for now */
--- Drop source for 2.3 Jewelcrafting Recipe
-UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 19768; -- disabled for now to prevent the creature from attacking while phased
-
 -- Phasing Zul'Aman quest npcs until TBC T4.
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc_t4' WHERE `entry` IN (19227, 23761);
 
 -- Phasing TBC vendors and trainers - Copies are added to replace them until TBC T4.
-/* I keep it for now: I don't use quest progression conditions for now */
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc_t4' WHERE `entry` IN (17585, 17657, 18754, 18771, 19187, 21087, 21655);
--- UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc_t4' WHERE `entry` IN (18754, 18771, 19187, 21087);
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc_t4' WHERE `entry` IN (18754, 18771, 19187, 21087);
 
 -- Phasing for General Tiras'alan and Dathris Sunstriker - prevent early access to Isle of Quel'Danas
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc_t5' WHERE `entry` IN (25167, 18594);

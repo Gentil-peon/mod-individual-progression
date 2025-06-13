@@ -653,12 +653,12 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`, `ExtendedCost
 (@LP_TBC, 31649, 0, 0, 2265), (@LP_TBC, 31650, 0, 0, 2267);
 
 
-/* I don't use quest progression conditions for now, and I use some other pvp conditions instead for this items */
+
 /* Hide certain vendor items until the player has reached the progression tier for them */
 DELETE FROM `conditions` WHERE `SourceGroup` IN (12796, @LP_Classic, @LP_TBC, @TH_Classic, @TH_TBC);
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
--- 
+-- -- 
 -- (23, @LP_Classic, 16533, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Lady Palanseer will not sell Warlords Silk Cowl until the player has completed PROGRESSION_ONYXIA'),
 -- (23, @LP_Classic, 16534, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Lady Palanseer will not sell Generals Silk Trousers until the player has completed PROGRESSION_ONYXIA'),
 -- (23, @LP_Classic, 16535, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Lady Palanseer will not sell Warlords Silk Raiment until the player has completed PROGRESSION_ONYXIA'),
@@ -729,7 +729,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 -- (23, @TH_Classic, 23467, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Sergeant Thunderhorn will not sell High Warlords Quickblade until the player has completed PROGRESSION_ONYXIA'),
 -- (23, @TH_Classic, 23468, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Sergeant Thunderhorn will not sell High Warlords Tome of Destruction until the player has completed PROGRESSION_ONYXIA'),
 -- (23, @TH_Classic, 23469, 0, 0, 8, 0, 66002, 0, 0, 0, 0, 0, '', 'Sergeant Thunderhorn will not sell High Warlords Tome of Mending until the player has completed PROGRESSION_ONYXIA'),
---
+-- --
 (23, 12796, 34129, 0, 0, 8, 0, 66008, 0, 0, 0, 0, 0, '', 'Raider Bork will not sell Swift Warstrider until the player has completed PROGRESSION_PRE_TBC');
 
 
