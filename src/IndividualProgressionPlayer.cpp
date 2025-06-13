@@ -465,10 +465,10 @@ public:
                 }
                 break;
             case INTO_THE_BREACH:
-                if (!sIndividualProgression->disableDefaultProgression)
-                {
-                    sIndividualProgression->UpdateProgressionState(player, PROGRESSION_NAXX40);
-                }
+                // if (!sIndividualProgression->disableDefaultProgression)
+                // {
+                //     sIndividualProgression->UpdateProgressionState(player, PROGRESSION_NAXX40);
+                // }
                 break;
             case QUEST_MORROWGRAIN:
             case QUEST_TROLL_NECKLACE:
@@ -625,7 +625,7 @@ public:
             case AREA_BLASTED_LANDS:
             case AREA_RISE_OF_THE_DEFILER:
             case AREA_THE_DARK_PORTAL:
-                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40)) && player->GetLevel() == IP_LEVEL_VANILLA
+                if ((sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) && player->GetLevel() <= IP_LEVEL_VANILLA)
                     || (sIndividualProgression->isExcludedFromProgression(player) && player->GetLevel() == IP_LEVEL_VANILLA))
                 {
                     player->RemoveAura(IPP_PHASE);
