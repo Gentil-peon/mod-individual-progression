@@ -71,27 +71,6 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_tbc' WHERE `entry` IN (
 37915  -- Timothy Cunningham, The Bulwark, Flight Master
 );
 
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
-WHERE `map` = 0 AND `id` = 184463; -- Karazhan meeting stone
-
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
-WHERE `map` = 1 AND `id` = 182560; -- Time cavern meeting stone
-
-/* 3.0+ - NPCs/Gobjects added in Eastern/Kalimdor during WotLK pre-patch or more */
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (
-26537, -- Greeb Ramrocket, Zep
-26539, -- Meefi Farthrottle, Zep
-29346, -- Apothecary Karlov, Orgrimmar
-31704, -- Crewman Spinwheel, Zep
-31705, -- Crewman Coilspan, Zep
-31706, -- Crewman Stembolt, Zep
-31716, -- Sky-Captain Cryoflight, Zep
-31720, -- Crewman Shubbscoop, Zep
-31723, -- Crewman Barrowswizzle, Zep
-31724, -- Crewman Paltertop, Zep
-31725 -- Sky-Captain LaFontaine, Zep
-);
-
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (
 12788, -- Legionnaire Teena
 19850  -- Councilor Arial D'Anastasis
@@ -104,8 +83,17 @@ UPDATE `creature` SET `ScriptName` = 'npc_ipp_tbc' WHERE `id1` IN (
 /* Fix bad phasing for Wrathscale Myrmidon, Azuremyst Isle */
 UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 17194;
 
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
+WHERE `map` = 0 AND `id` = 184463; -- Karazhan meeting stone
+
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' 
+WHERE `map` = 1 AND `id` = 182560; -- Time cavern meeting stone
+
 /* Remove interactions between Cersei, Lorrin and the orcs in Stonard */
 UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 27705);
+
+/* Hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox */
+UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 49832; -- Darnassus
 
 /* Hide guild vaults until TBC (was introduced during 2.3) - disabled by default, because most players will expect these gobject to be there */
 /* UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` IN (
@@ -123,10 +111,21 @@ UPDATE `creature_template` SET `AIName` = '' WHERE `entry` IN (12807, 17109, 277
 50356, 50357
 ); */
 
-/* Hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox */
-UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_tbc' WHERE `guid` = 49832; -- Darnassus
+/* 3.0+ - NPCs/Gobjects added in Eastern/Kalimdor during WotLK pre-patch or more */
+UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_wotlk' WHERE `entry` IN (
+26537, -- Greeb Ramrocket, Zep
+26539, -- Meefi Farthrottle, Zep
+29346, -- Apothecary Karlov, Orgrimmar
+31704, -- Crewman Spinwheel, Zep
+31705, -- Crewman Coilspan, Zep
+31706, -- Crewman Stembolt, Zep
+31716, -- Sky-Captain Cryoflight, Zep
+31720, -- Crewman Shubbscoop, Zep
+31723, -- Crewman Barrowswizzle, Zep
+31724, -- Crewman Paltertop, Zep
+31725 -- Sky-Captain LaFontaine, Zep
+);
 
-/* 3.0 - NPCs/Gobjects added in Eastern/Kalimdor during WotLK pre-patch */
 /* Hide mailboxes, see: https://www.wowhead.com/classic/object=32349/mailbox */
 UPDATE `gameobject` SET `ScriptName` = 'gobject_ipp_wotlk' WHERE `guid` IN (
 150747, 150748, 150749, 150750, 150751, 150752, 150753, 150755, -- Orgrimmar

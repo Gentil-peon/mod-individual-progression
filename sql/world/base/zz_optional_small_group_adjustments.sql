@@ -29,9 +29,8 @@ DELETE FROM `creature_formations` WHERE `memberGUID` IN (56628, 56619, 56622, 56
 DELETE FROM `linked_respawn` WHERE `guid` IN (56628, 56619, 56622, 56610);
 */
 
-/* Restore Fewer Firesworn in Garr fight */
-/*
-DELETE FROM `creature` WHERE `guid` IN (56628, 56619, 56622, 56610);
+/* -- Restore Firesworn in Garr fight (if needed) -- */
+/* DELETE FROM `creature` WHERE `guid` IN (56628, 56619, 56622, 56610);
 INSERT INTO `creature` (`guid`,`id1`,`id2`,`id3`,`map`,`zoneId`,`areaId`,`spawnMask`,`phaseMask`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`wander_distance`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`,`ScriptName`,`VerifiedBuild`,`CreateObject`,`Comment`) VALUES
 (56619,12099,0,0,409,0,0,1,1,0,693.192,-494.994,-214.185,0,7200,0,0,61040,0,0,0,0,0,'',0,0,NULL),
 (56610,12099,0,0,409,0,0,1,1,0,688.943,-508.177,-214.46,4.83456,7200,0,0,61040,0,0,0,0,0,'',0,0,NULL),

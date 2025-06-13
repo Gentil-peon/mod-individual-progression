@@ -26,7 +26,7 @@ public:
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
         if (((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && sIndividualProgression->isAttunedNaxx(player))
-            || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) && player->GetLevel() < 71)
+            || (sIndividualProgression->hasPassedProgression(player, PROGRESSION_NAXX40) && player->GetLevel() <= IP_LEVEL_TBC)
             || sIndividualProgression->isExcludedFromProgression(player)
             || player->IsGameMaster())
         {

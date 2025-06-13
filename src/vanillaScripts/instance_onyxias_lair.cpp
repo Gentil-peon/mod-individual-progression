@@ -135,7 +135,7 @@ public:
     onyxia_entrance_trigger() : AreaTriggerScript("onyxia_entrance_trigger") { }
 
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
-    {   
+    {
         if (player->GetLevel() < IP_LEVEL_WOTLK)
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_25MAN_HEROIC); // quick hack #ZhengPeiRu21/mod-individual-progression/issues/359
