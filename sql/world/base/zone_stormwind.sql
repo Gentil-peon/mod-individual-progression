@@ -381,6 +381,7 @@ UPDATE `creature_template_addon` SET `mount` = 0 WHERE `entry` = 12783;
 
 
 DELETE FROM `creature` WHERE `guid` IN (133928, 133926, 133929, 612781, 612783, 612785, 623446, 624671, 624672, 626393, 626394, 720278, 723396);
+DELETE FROM `creature` WHERE `id1` IN (12781, 12783, 12784, 12785, 20278, 23396, 23446, 24671, 24672, 26393, 26394, 112781, 112785) AND `map` = 0;
 INSERT INTO `creature` (`guid`, `id1`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
 --
 (612781, @Biggins, 0, -8777.4, 417.124, 103.921, 6.23553, 180), -- Master Sergeant Biggins <Officer Accessories Quartermaster>, Vanilla
