@@ -13,11 +13,11 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_preaq' WHERE `entry` IN (
 -- Phasing Cenarion Hold guards
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_preaq' WHERE `id1` = 15184 AND `guid` IN (42782, 42783, 42768);
 
--- Phasing NPCs until after the outdoors AQ war has been completed
-UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_aq' WHERE `entry` IN (15498, 15499, 15500, 15540, 16091, 17081, 17082, 15612, 17070, 17079, 15440, 15444, 17068, 17080);                -- Cenarion Hold
+-- Phasing NPCs until after the outdoors AQ war has been completed 
+-- Buggy & reversed
+UPDATE `creature` SET `phaseMask` = 1, `ScriptName` = "" WHERE `id1` IN (15612, 15613, 15615, 15616, 15617, 17070, 17079, 17766, 15440, 15441, 15442, 15443, 15444, 15903, 17068, 17080, 17765, 17081, 17082);
+UPDATE `creature_template` SET `ScriptName` = "" WHERE `entry` IN (15612, 15613, 15615, 15616, 15617, 17070, 17079, 17766, 15440, 15441, 15442, 15443, 15444, 15903, 17068, 17080, 17765, 17081, 17082);
 
-UPDATE `creature` SET `phaseMask` = 1 WHERE `id1` IN (15612, 15613, 15615, 15616, 15617, 17070, 17079, 17766,         -- Orgrimmar Legion Post 
-                                                      15440, 15441, 15442, 15443, 15444, 15903, 17068, 17080, 17765); -- Ironforge Brigade post
 -- Phasing Wanted Poster Deathclasp
 UPDATE `gameobject_template` SET `ScriptName` = 'gobject_ipp_preaq' WHERE `entry` IN (180448);
 
